@@ -98,6 +98,39 @@ DEFAULT_SETTINGS = {
     "sticker_responses": True,
 }
 
+# Style display names mapping (used everywhere)
+STYLE_DISPLAY_NAMES = {
+    "default": "📝 Default",
+    "minimal_glass": "🔲 Minimal Glass",
+    "neon_glow": "💜 Neon Glow",
+    "premium_card": "💎 Premium Card",
+    "dark_futuristic": "🌑 Dark Futuristic",
+    "clean_professional": "✨ Clean Pro",
+    "cyber_terminal": "💻 Cyber/Terminal",
+    "dual_border": "🏛️ Dual Border",
+    "rounded_neon": "🎯 Rounded Neon",
+    "instagram": "📸 Instagram",
+    "matrix": "💚 Matrix/Code",
+    "space_galaxy": "🌌 Space Galaxy",
+    "minimal_dots": "⚪ Minimal Dots"
+}
+
+ALL_STYLES = [
+    "default",
+    "minimal_glass",
+    "neon_glow",
+    "premium_card",
+    "dark_futuristic",
+    "clean_professional",
+    "cyber_terminal",
+    "dual_border",
+    "rounded_neon",
+    "instagram",
+    "matrix",
+    "space_galaxy",
+    "minimal_dots"
+]
+
 # Initialize bot
 bot = Client(
     "ugx",
@@ -364,7 +397,12 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(f"Resume Interrupted {status('resume')}", callback_data="set_resume_toggle")])
     buttons.append([InlineKeyboardButton(f"Downloader Name: {settings['downloader_name'][:10]}", callback_data="set_downloader_name")])
     buttons.append([InlineKeyboardButton(f"Show Extension {status('show_extension')}", callback_data="set_show_extension_toggle")])
-    buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {settings.get('caption_style', 'default')}", callback_data="set_caption_style")])
+    
+    # Caption Style with display name
+    current_style = settings.get('caption_style', 'default')
+    display_name = STYLE_DISPLAY_NAMES.get(current_style, current_style)
+    buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {display_name}", callback_data="set_caption_style")])
+    
     buttons.append([InlineKeyboardButton(f"Show Title {status('show_title')}", callback_data="set_show_title_toggle")])
     buttons.append([InlineKeyboardButton(f"Quality: {settings['quality']}p", callback_data="set_quality")])
     buttons.append([InlineKeyboardButton(f"Thumbnail: {'Custom' if settings['thumbnail']!='default' else 'Default'}", callback_data="set_thumbnail")])
@@ -399,7 +437,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
         current = settings.get(key, False)
         update_setting(user_id, key, not current, bot_username)
         await query.answer(f"✅ {key.replace('_',' ').title()} set to {not current}")
-        await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+        await query.message.edit_text(
+            "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+            reply_markup=settings_menu_markup(user_id)
+        )
         return
 
     if data == "set_downloader_name":
@@ -411,7 +452,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
                 update_setting(user_id, "downloader_name", input_msg.text.strip(), bot_username)
                 await input_msg.delete()
                 await msg.edit_text("✅ Downloader name updated!")
-                await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
             else:
                 await msg.edit_text("❌ Cancelled.")
         except asyncio.TimeoutError:
@@ -419,40 +463,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
         return
 
     if data == "set_caption_style":
-        styles = [
-            "default",
-            "minimal_glass",
-            "neon_glow",
-            "premium_card",
-            "dark_futuristic",
-            "clean_professional",
-            "cyber_terminal",
-            "dual_border",
-            "rounded_neon",
-            "instagram",
-            "matrix",
-            "space_galaxy",
-            "minimal_dots"
-        ]
         buttons = []
-        style_display = {
-            "default": "📝 Default",
-            "minimal_glass": "🔲 Minimal Glass",
-            "neon_glow": "💜 Neon Glow",
-            "premium_card": "💎 Premium Card",
-            "dark_futuristic": "🌑 Dark Futuristic",
-            "clean_professional": "✨ Clean Pro",
-            "cyber_terminal": "💻 Cyber/Terminal",
-            "dual_border": "🏛️ Dual Border",
-            "rounded_neon": "🎯 Rounded Neon",
-            "instagram": "📸 Instagram Style",
-            "matrix": "💚 Matrix/Code",
-            "space_galaxy": "🌌 Space Galaxy",
-            "minimal_dots": "⚪ Minimal Dots"
-        }
-        for style in styles:
+        for style in ALL_STYLES:
             check = " ✅" if settings.get("caption_style") == style else ""
-            display_name = style_display.get(style, style)
+            display_name = STYLE_DISPLAY_NAMES.get(style, style)
             buttons.append([InlineKeyboardButton(f"{display_name}{check}", callback_data=f"set_caption_style_{style}")])
         buttons.append([InlineKeyboardButton("🔙 Back", callback_data="main_menu")])
         await query.message.edit_text(
@@ -464,11 +478,14 @@ async def settings_callback(client: Client, query: CallbackQuery):
 
     if data.startswith("set_caption_style_"):
         style = data.replace("set_caption_style_", "")
-        valid_styles = ["default", "minimal_glass", "neon_glow", "premium_card", "dark_futuristic", "clean_professional", "cyber_terminal", "dual_border", "rounded_neon", "instagram", "matrix", "space_galaxy", "minimal_dots"]
-        if style in valid_styles:
+        if style in ALL_STYLES:
             update_setting(user_id, "caption_style", style, bot_username)
-            await query.answer(f"✅ Caption style set to {style}")
-            await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+            display_name = STYLE_DISPLAY_NAMES.get(style, style)
+            await query.answer(f"✅ Caption style set to {display_name}")
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
         return
 
     if data == "set_quality":
@@ -490,7 +507,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
         if q in qualities:
             update_setting(user_id, "quality", q, bot_username)
             await query.answer(f"Quality set to {q}p")
-            await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
         return
 
     if data == "set_thumbnail":
@@ -503,11 +523,17 @@ async def settings_callback(client: Client, query: CallbackQuery):
                 await client.download_media(input_msg.photo, file_name=file_path)
                 update_setting(user_id, "thumbnail", file_path, bot_username)
                 await msg.edit_text("✅ Thumbnail updated!")
-                await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
             elif input_msg.text == "/default":
                 update_setting(user_id, "thumbnail", "default", bot_username)
                 await msg.edit_text("✅ Reset to default.")
-                await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
             elif input_msg.text == "/cancel":
                 await msg.edit_text("❌ Cancelled.")
             else:
@@ -524,7 +550,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
             if input_msg.text and input_msg.text != "/cancel":
                 update_setting(user_id, "pw_token", input_msg.text.strip(), bot_username)
                 await msg.edit_text("✅ PW Token updated!")
-                await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
             else:
                 await msg.edit_text("❌ Cancelled.")
         except asyncio.TimeoutError:
@@ -539,7 +568,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
             if input_msg.text and input_msg.text != "/cancel":
                 update_setting(user_id, "proxy", input_msg.text.strip(), bot_username)
                 await msg.edit_text("✅ Proxy updated!")
-                await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
             else:
                 await msg.edit_text("❌ Cancelled.")
         except asyncio.TimeoutError:
@@ -598,7 +630,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
                 await msg.edit_text(f"✅ Added: {subject} → `{chat_id}`")
             else:
                 await msg.edit_text("❌ Failed.")
-            await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
         except asyncio.TimeoutError:
             await msg.edit_text("⏰ Timeout.")
         return
@@ -621,7 +656,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
             await query.answer(f"Removed {subject}")
         else:
             await query.answer("Failed.")
-        await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+        await query.message.edit_text(
+            "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+            reply_markup=settings_menu_markup(user_id)
+        )
         return
 
     if data == "set_default_group":
@@ -640,7 +678,10 @@ async def settings_callback(client: Client, query: CallbackQuery):
                 await msg.edit_text(f"✅ Default group set to `{chat_id}`")
             else:
                 await msg.edit_text("❌ Failed.")
-            await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
         except asyncio.TimeoutError:
             await msg.edit_text("⏰ Timeout.")
         return
