@@ -1140,15 +1140,17 @@ async def txt_handler(bot: Client, m: Message):
             else:
                 name = f'{name1[:60]}'
 
-            # ========== AUTO GROUPING ==========
+            # ========== FRESH FETCH USER SETTINGS FOR EACH VIDEO ==========
             user_settings = get_user_settings(m.from_user.id, bot_username)
+            caption_style = user_settings.get("caption_style", "default")
+            
             if user_settings.get("auto_grouping", False):
                 group_chat_id = db.get_group_for_file(m.from_user.id, name1, bot_username)
                 if group_chat_id:
                     channel_id = group_chat_id
-            # ===================================
+            # =============================================================
 
-            # URL transformations (same as original code)
+            # URL transformations
             if "visionias" in url:
                 async with aiohttp.ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
@@ -1248,10 +1250,6 @@ async def txt_handler(bot: Client, m: Message):
             date_str = current_ist.strftime('%d-%m-%Y')
             time_str = current_ist.strftime('%A, %d %B %Y • %I:%M %p')
             batch_blockquote = f'<blockquote>{b_name}</blockquote>'
-            
-            # Get user's caption style
-            user_settings = get_user_settings(m.from_user.id, bot_username)
-            caption_style = user_settings.get("caption_style", "default")
 
             try:
                 if "drive" in url:
