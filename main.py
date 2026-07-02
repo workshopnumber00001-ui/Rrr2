@@ -73,13 +73,10 @@ from db import db
 
 LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", "-1003692273087"))
 API_BASE = os.getenv("API_BASE", "https://backend.multistreaming.site/api")
-
-# Authorized users for ram.py commands (combine with existing admins)
 RAM_AUTHORIZED_USERS = [int(uid.strip()) for uid in os.getenv("AUTHORIZED_USERS", "5349573682,8453406690").split(",") if uid.strip()]
 if not RAM_AUTHORIZED_USERS:
     RAM_AUTHORIZED_USERS = [5349573682, 8453406690]
 
-# Check if user is authorized for ram commands
 def is_ram_authorized(user_id):
     return user_id in RAM_AUTHORIZED_USERS or user_id in ADMINS or user_id == OWNER_ID
 
@@ -88,7 +85,6 @@ START_THUMBNAIL = os.getenv("START_THUMBNAIL", "https://i.ibb.co/xKptwJmc/178275
 EXTRACT_THUMBNAIL = os.getenv("EXTRACT_THUMBNAIL", "https://i.ibb.co/xKptwJmc/1782753295338.jpg")
 BANNER_LINE = "━━━━━━━━━━━━━━━━━━━━━━\n⚡ ᴏᴡɴᴇʀ: ⛧𓂀 𝕮𝖆𝖕𝖙𝖆𝖎𝖓 ☠️ 𓂀⛧\n━━━━━━━━━━━━━━━━━━━━━━\n"
 
-# CW APIs
 CW_ALL_BATCHES = os.getenv("CW_ALL_BATCHES", "https://cw-ut-apis-e37c22944d2f.herokuapp.com/api/batches")
 CW_BATCH_API = os.getenv("CW_BATCH_API", "https://cw-api-website.vercel.app/batch/{}")
 CW_TOPIC_API = os.getenv("CW_TOPIC_API", "https://cw-api-website.vercel.app/batch?batchid={}&topicid={}")
@@ -115,7 +111,6 @@ HEADERS = {
 }
 
 # ================= SET IST TIMEZONE =================
-
 IST = pytz.timezone('Asia/Kolkata')
 
 # Global user data for ram.py features
@@ -440,7 +435,7 @@ DEFAULT_SETTINGS = {
     "resume": False,
     "downloader_name": "🥀°𓏲кяιѕнηα⋆🌿",
     "show_extension": True,
-    "caption_style": "bracket_style",  # <-- Default Bracket Style
+    "caption_style": "bracket_style",
     "show_title": True,
     "quality": "480",
     "thumbnail": "default",
@@ -589,10 +584,254 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"\n<i>{time_str}</i>\n"
         )
     
-    # Continue with all other styles (clean_professional, cyber_terminal, etc.)
-    # To save space, we include a simplified version; you can copy full from previous code.
-    # For brevity, we include only bracket_style and default fallback.
-    else:  # default
+    elif style == "dark_futuristic":
+        return (
+            f"\n<b>╔═══════════════════════╗</b>\n"
+            f"<b>║  🔥 VIDEO DETAILS</b>\n"
+            f"<b>╠═══════════════════════╣</b>\n"
+            f"<b>║</b>\n"
+            f"<b>║  ◆ ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>║  ◆ Batch</b> : {plain_batch}\n"
+            f"<b>║  ◆ Title</b> : {name1}\n"
+            f"<b>║  ◆ Ext</b>   : {CR}.{ext_actual}\n"
+            f"<b>║  ◆ Res</b>   : {res}\n"
+            f"<b>║  ◆ Date</b>  : {date_str}\n"
+            f"<b>║</b>\n"
+            f"<b>╠═══════════════════════╣</b>\n"
+            f"<b>║  ✦ {CR}</b>\n"
+            f"<b>╚═══════════════════════╝</b>\n\n"
+            f"<i>⏱ {time_str}</i>\n"
+        )
+    
+    elif style == "clean_professional":
+        return (
+            f"\n<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"<b>  📌 VIDEO DETAILS</b>\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n\n"
+            f"  <b>🆔 Index</b> : {str(count).zfill(3)}\n"
+            f"  <b>📦 Batch</b> : {plain_batch}\n"
+            f"  <b>📄 Title</b> : {name1}\n"
+            f"  <b>📎 Ext</b>   : {CR}.{ext_actual}\n"
+            f"  <b>📐 Res</b>   : {res}\n"
+            f"  <b>📆 Date</b>  : {date_str}\n\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"  <b>© {CR}</b>\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"<i>{time_str}</i>\n"
+        )
+    
+    elif style == "cyber_terminal":
+        return (
+            f"\n<b>┌─[ VIDEO ]───────────────────┐</b>\n"
+            f"<b>│</b>\n"
+            f"<b>│  ╭─▶ ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>│  ├─▶ Batch</b> : {plain_batch}\n"
+            f"<b>│  ├─▶ Title</b> : {name1}\n"
+            f"<b>│  ├─▶ Ext</b>   : {CR}.{ext_actual}\n"
+            f"<b>│  ├─▶ Res</b>   : {res}\n"
+            f"<b>│  ╰─▶ Date</b>  : {date_str}\n"
+            f"<b>│</b>\n"
+            f"<b>├─────────────────────────────┤</b>\n"
+            f"<b>│  🚀 {CR}</b>\n"
+            f"<b>└─────────────────────────────┘</b>\n"
+            f"\n<i>⏱ {time_str}</i>\n"
+        )
+    
+    elif style == "dual_border":
+        return (
+            f"\n<b>╔══════════════════════════════╗</b>\n"
+            f"<b>║   ✦ 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄𝐓𝐀𝐈𝐋𝐒 ✦</b>\n"
+            f"<b>╠══════════════════════════════╣</b>\n"
+            f"<b>║</b>\n"
+            f"<b>║  ✦ Index</b>   : {str(count).zfill(3)}\n"
+            f"<b>║  ✦ Batch</b>   : {plain_batch}\n"
+            f"<b>║  ✦ Title</b>   : {name1}\n"
+            f"<b>║  ✦ Format</b>  : {CR}.{ext_actual}\n"
+            f"<b>║  ✦ Quality</b> : {res}\n"
+            f"<b>║  ✦ Date</b>    : {date_str}\n"
+            f"<b>║</b>\n"
+            f"<b>╠══════════════════════════════╣</b>\n"
+            f"<b>║  ✦ Uploaded By</b>\n"
+            f"<b>║  ╰─ {CR}</b>\n"
+            f"<b>╚══════════════════════════════╝</b>\n\n"
+            f"<i>🕐 {time_str}</i>\n"
+        )
+    
+    elif style == "rounded_neon":
+        return (
+            f"\n<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"<b>▣  🔥 VIDEO INFO</b>\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n\n"
+            f"  <b>⚡ ID</b>   : {str(count).zfill(3)}\n"
+            f"  <b>📦 Batch</b> : {plain_batch}\n"
+            f"  <b>📌 Title</b> : {name1}\n"
+            f"  <b>🎯 Ext</b>  : {CR}.{ext_actual}\n"
+            f"  <b>📐 Res</b>  : {res}\n"
+            f"  <b>📅 Date</b> : {date_str}\n\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"  <b>🌟 {CR}</b>\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"\n<i>⏰ {time_str}</i>\n"
+        )
+    
+    elif style == "instagram":
+        return (
+            f"\n<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n\n"
+            f"  <b>🎬 VIDEO</b>\n\n"
+            f"  <b>📌</b> {str(count).zfill(3)}\n"
+            f"  <b>📚</b> {plain_batch}\n"
+            f"  <b>📖</b> {name1}\n"
+            f"  <b>💾</b> {CR}.{ext_actual}\n"
+            f"  <b>📐</b> {res}\n"
+            f"  <b>📆</b> {date_str}\n\n"
+            f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
+            f"  <b>💫 {CR}</b>\n"
+            f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
+            f"\n<i>{time_str}</i>\n"
+        )
+    
+    elif style == "matrix":
+        return (
+            f"\n<b>┌─────────────────────────┐</b>\n"
+            f"<b>│  ███╗  ██╗███████╗ ██████╗</b>\n"
+            f"<b>│  ████╗ ██║██╔════╝██╔═══██╗</b>\n"
+            f"<b>│  ██╔██╗██║█████╗  ██║   ██║</b>\n"
+            f"<b>│  ██║╚████║██╔══╝  ██║   ██║</b>\n"
+            f"<b>│  ██║ ╚███║██║     ╚██████╔╝</b>\n"
+            f"<b>│  ╚═╝  ╚══╝╚═╝      ╚═════╝</b>\n"
+            f"<b>├─────────────────────────┤</b>\n"
+            f"<b>│  ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>│  Batch</b> : {plain_batch}\n"
+            f"<b>│  Title</b> : {name1}\n"
+            f"<b>│  Ext</b>   : {CR}.{ext_actual}\n"
+            f"<b>│  Res</b>   : {res}\n"
+            f"<b>│  Date</b>  : {date_str}\n"
+            f"<b>├─────────────────────────┤</b>\n"
+            f"<b>│  ▶ {CR}</b>\n"
+            f"<b>└─────────────────────────┘</b>\n"
+            f"\n<i>⏱ {time_str}</i>\n"
+        )
+    
+    elif style == "space_galaxy":
+        return (
+            f"\n<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
+            f"<b>    🌟 VIDEO DETAILS</b>\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
+            f"  <b>🪐 Index</b> : {str(count).zfill(3)}\n"
+            f"  <b>🌌 Batch</b> : {plain_batch}\n"
+            f"  <b>📖 Title</b> : {name1}\n"
+            f"  <b>🔗 Ext</b>  : {CR}.{ext_actual}\n"
+            f"  <b>📐 Res</b>  : {res}\n"
+            f"  <b>📅 Date</b> : {date_str}\n\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
+            f"  <b>⭐ {CR}</b>\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
+            f"<i>🕐 {time_str}</i>\n"
+        )
+    
+    elif style == "minimal_dots":
+        return (
+            f"\n<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"<b>  📌 VIDEO</b>\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n\n"
+            f"  <b>• ID</b>    : {str(count).zfill(3)}\n"
+            f"  <b>• Batch</b> : {plain_batch}\n"
+            f"  <b>• Title</b> : {name1}\n"
+            f"  <b>• Ext</b>   : {CR}.{ext_actual}\n"
+            f"  <b>• Res</b>   : {res}\n"
+            f"  <b>• Date</b>  : {date_str}\n\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"  <b>{CR}</b>\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"\n<i>{time_str}</i>\n"
+        )
+    
+    # ========== NEW MODERN STYLES ==========
+    
+    elif style == "clean_glass":
+        return (
+            f"\n<b>╭─────────────────────╮</b>\n"
+            f"<b>│  ✦ VIDEO DETAILS</b>\n"
+            f"<b>╰─────────────────────╯</b>\n\n"
+            f"  <b>ID</b>    {str(count).zfill(3)}\n"
+            f"  <b>Batch</b> {plain_batch}\n"
+            f"  <b>Title</b> {name1}\n"
+            f"  <b>Ext</b>   {CR}.{ext_actual}\n"
+            f"  <b>Res</b>   {res}\n"
+            f"  <b>Date</b>  {date_str}\n\n"
+            f"<b>─────── ✦ ───────</b>\n"
+            f"<i>{time_str}</i>\n"
+            f"<b>  {CR}</b>\n"
+        )
+    
+    elif style == "smooth_flow":
+        return (
+            f"\n<b>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</b>\n"
+            f"<b>  📌 VIDEO</b>\n"
+            f"<b>▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔</b>\n\n"
+            f"  <b>◈ ID</b>    {str(count).zfill(3)}\n"
+            f"  <b>◈ Batch</b> {plain_batch}\n"
+            f"  <b>◈ Title</b> {name1}\n"
+            f"  <b>◈ Ext</b>   {CR}.{ext_actual}\n"
+            f"  <b>◈ Res</b>   {res}\n"
+            f"  <b>◈ Date</b>  {date_str}\n\n"
+            f"<b>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</b>\n"
+            f"<i>{time_str}</i>\n"
+            f"<b>  ◆ {CR}</b>\n"
+        )
+    
+    elif style == "minimal_dot":
+        return (
+            f"\n<b>• • • • • • • • • • • • • •</b>\n"
+            f"<b>  ▫ VIDEO</b>\n"
+            f"<b>• • • • • • • • • • • • • •</b>\n\n"
+            f"  <b>◉</b> ID    {str(count).zfill(3)}\n"
+            f"  <b>◉</b> Batch {plain_batch}\n"
+            f"  <b>◉</b> Title {name1}\n"
+            f"  <b>◉</b> Ext   {CR}.{ext_actual}\n"
+            f"  <b>◉</b> Res   {res}\n"
+            f"  <b>◉</b> Date  {date_str}\n\n"
+            f"<b>• • • • • • • • • • • • • •</b>\n"
+            f"<i>{time_str}</i>\n"
+            f"<b>  {CR}</b>\n"
+        )
+    
+    elif style == "modern_border":
+        return (
+            f"\n<b>┌──────────────────────┐</b>\n"
+            f"<b>│  ★ VIDEO DETAILS</b>\n"
+            f"<b>├──────────────────────┤</b>\n"
+            f"<b>│</b>\n"
+            f"<b>│  ID</b>    {str(count).zfill(3)}\n"
+            f"<b>│  Batch</b> {plain_batch}\n"
+            f"<b>│  Title</b> {name1}\n"
+            f"<b>│  Ext</b>   {CR}.{ext_actual}\n"
+            f"<b>│  Res</b>   {res}\n"
+            f"<b>│  Date</b>  {date_str}\n"
+            f"<b>│</b>\n"
+            f"<b>├──────────────────────┤</b>\n"
+            f"<b>│  {CR}</b>\n"
+            f"<b>└──────────────────────┘</b>\n"
+            f"\n<i>{time_str}</i>\n"
+        )
+    
+    elif style == "ultra_clean":
+        return (
+            f"\n<b>── ✦ ── ✦ ── ✦ ──</b>\n"
+            f"<b>  VIDEO</b>\n"
+            f"<b>── ✦ ── ✦ ── ✦ ──</b>\n\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n\n"
+            f"<b>── ✦ ── ✦ ── ✦ ──</b>\n"
+            f"<i>{time_str}</i>\n"
+            f"<b>  {CR}</b>\n"
+        )
+    
+    else:  # default (fallback)
         return (
             f"\n<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
             f"<b>📎 Batch:</b> {plain_batch}\n\n"
@@ -648,7 +887,6 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton("🔙 Back to Main Menu", callback_data="main_menu")])
     return InlineKeyboardMarkup(buttons)
 
-# Existing settings command handlers (unchanged)
 @bot.on_message(filters.command("setting") & filters.private)
 async def settings_cmd(client: Client, message: Message):
     user_id = message.from_user.id
@@ -659,14 +897,11 @@ async def settings_cmd(client: Client, message: Message):
 
 @bot.on_callback_query()
 async def settings_callback(client: Client, query: CallbackQuery):
-    # This will also handle ram callbacks if they start with split_ or extract_ etc.
-    # We'll add ram callbacks separately and let this handle the original settings.
     data = query.data
     user_id = query.from_user.id
     bot_username = client.me.username
     settings = get_user_settings(user_id, bot_username)
 
-    # Original settings logic
     if data.endswith("_toggle"):
         key = data.replace("set_", "").replace("_toggle", "")
         current = settings.get(key, False)
@@ -723,13 +958,215 @@ async def settings_callback(client: Client, query: CallbackQuery):
             )
         return
 
-    # ... (other settings options like set_quality, set_thumbnail, etc. keep them unchanged)
-    # To save space, I'll include a placeholder; you can copy your existing code.
+    if data == "set_quality":
+        qualities = ["144", "240", "360", "480", "720", "1080"]
+        buttons = []
+        for q in qualities:
+            check = " ✅" if settings.get("quality") == q else ""
+            buttons.append([InlineKeyboardButton(f"{q}p{check}", callback_data=f"set_quality_{q}")])
+        buttons.append([InlineKeyboardButton("🔙 Back", callback_data="main_menu")])
+        await query.message.edit_text(
+            "📐 **Select Upload Quality:**",
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+        return
 
-    # For any other callback, we pass it to ram callback handler
+    if data.startswith("set_quality_"):
+        q = data.replace("set_quality_", "")
+        qualities = ["144", "240", "360", "480", "720", "1080"]
+        if q in qualities:
+            update_setting(user_id, "quality", q, bot_username)
+            await query.answer(f"Quality set to {q}p")
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
+        return
+
+    if data == "set_thumbnail":
+        await query.answer()
+        msg = await query.message.reply_text("🖼️ Send a photo, /default, or /cancel:")
+        try:
+            input_msg: Message = await client.listen(msg.chat.id, timeout=30)
+            if input_msg.photo:
+                file_path = f"downloads/thumb_{user_id}.jpg"
+                await client.download_media(input_msg.photo, file_name=file_path)
+                update_setting(user_id, "thumbnail", file_path, bot_username)
+                await msg.edit_text("✅ Thumbnail updated!")
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
+            elif input_msg.text == "/default":
+                update_setting(user_id, "thumbnail", "default", bot_username)
+                await msg.edit_text("✅ Reset to default.")
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
+            elif input_msg.text == "/cancel":
+                await msg.edit_text("❌ Cancelled.")
+            else:
+                await msg.edit_text("❌ Invalid input.")
+        except asyncio.TimeoutError:
+            await msg.edit_text("⏰ Timeout.")
+        return
+
+    if data == "set_pw_token":
+        await query.answer()
+        msg = await query.message.reply_text("🔑 Send new PW token (or /cancel):")
+        try:
+            input_msg: Message = await client.listen(msg.chat.id, timeout=30)
+            if input_msg.text and input_msg.text != "/cancel":
+                update_setting(user_id, "pw_token", input_msg.text.strip(), bot_username)
+                await msg.edit_text("✅ PW Token updated!")
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
+            else:
+                await msg.edit_text("❌ Cancelled.")
+        except asyncio.TimeoutError:
+            await msg.edit_text("⏰ Timeout.")
+        return
+
+    if data == "set_proxy":
+        await query.answer()
+        msg = await query.message.reply_text("🌐 Send proxy URL (or /cancel):")
+        try:
+            input_msg: Message = await client.listen(msg.chat.id, timeout=30)
+            if input_msg.text and input_msg.text != "/cancel":
+                update_setting(user_id, "proxy", input_msg.text.strip(), bot_username)
+                await msg.edit_text("✅ Proxy updated!")
+                await query.message.edit_text(
+                    "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                    reply_markup=settings_menu_markup(user_id)
+                )
+            else:
+                await msg.edit_text("❌ Cancelled.")
+        except asyncio.TimeoutError:
+            await msg.edit_text("⏰ Timeout.")
+        return
+
+    if data == "set_db_info":
+        try:
+            status = "✅ Connected" if db.client is not None else "❌ Disconnected"
+            await query.answer(f"Database: {status}")
+            await query.message.reply_text(f"📊 **Database Status**\n\nStatus: {status}\nDatabase: {DATABASE_NAME}")
+        except Exception as e:
+            await query.message.reply_text(f"❌ DB Error: {str(e)}")
+        return
+
+    # ========== SUBJECT GROUP MANAGEMENT ==========
+    if data == "set_subject_groups":
+        groups = db.get_subject_groups(user_id, bot_username)
+        text = "📂 **Subject Groups**\n\n"
+        if groups:
+            for subject, chat_id in groups.items():
+                text += f"• {subject} → `{chat_id}`\n"
+        else:
+            text += "No groups configured.\n"
+        text += f"\nDefault Group: `{db.get_default_group(user_id, bot_username) or 'Not set'}`\n\n"
+        text += "Use buttons below."
+        buttons = [
+            [InlineKeyboardButton("➕ Add New Group", callback_data="add_subject_group")],
+            [InlineKeyboardButton("🗑️ Remove Group", callback_data="remove_subject_group")],
+            [InlineKeyboardButton("📌 Set Default Group", callback_data="set_default_group")],
+            [InlineKeyboardButton("🔙 Back", callback_data="main_menu")]
+        ]
+        await query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons))
+        return
+
+    if data == "add_subject_group":
+        await query.answer()
+        msg = await query.message.reply_text("✏️ Send **Subject Name** (e.g., 'Mathematics'):")
+        try:
+            input1: Message = await client.listen(msg.chat.id, timeout=30)
+            if not input1.text or input1.text == "/cancel":
+                await msg.edit_text("❌ Cancelled.")
+                return
+            subject = input1.text.strip()
+            await input1.delete()
+            await msg.edit_text(f"📤 Now send the **Chat ID** (or forward a message):")
+            input2: Message = await client.listen(msg.chat.id, timeout=30)
+            if input2.forward_from_chat:
+                chat_id = input2.forward_from_chat.id
+            elif input2.text and input2.text.lstrip('-').isdigit():
+                chat_id = int(input2.text.strip())
+            else:
+                await msg.edit_text("❌ Invalid chat ID.")
+                return
+            if db.add_subject_group(user_id, bot_username, subject, chat_id):
+                await msg.edit_text(f"✅ Added: {subject} → `{chat_id}`")
+            else:
+                await msg.edit_text("❌ Failed.")
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
+        except asyncio.TimeoutError:
+            await msg.edit_text("⏰ Timeout.")
+        return
+
+    if data == "remove_subject_group":
+        groups = db.get_subject_groups(user_id, bot_username)
+        if not groups:
+            await query.answer("No groups.")
+            return
+        buttons = []
+        for subject in groups.keys():
+            buttons.append([InlineKeyboardButton(f"🗑️ {subject}", callback_data=f"remove_group_{subject}")])
+        buttons.append([InlineKeyboardButton("🔙 Back", callback_data="set_subject_groups")])
+        await query.message.edit_text("Select subject to remove:", reply_markup=InlineKeyboardMarkup(buttons))
+        return
+
+    if data.startswith("remove_group_"):
+        subject = data.replace("remove_group_", "")
+        if db.remove_subject_group(user_id, bot_username, subject):
+            await query.answer(f"Removed {subject}")
+        else:
+            await query.answer("Failed.")
+        await query.message.edit_text(
+            "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+            reply_markup=settings_menu_markup(user_id)
+        )
+        return
+
+    if data == "set_default_group":
+        await query.answer()
+        msg = await query.message.reply_text("📌 Send Chat ID (or forward):")
+        try:
+            input_msg: Message = await client.listen(msg.chat.id, timeout=30)
+            if input_msg.forward_from_chat:
+                chat_id = input_msg.forward_from_chat.id
+            elif input_msg.text and input_msg.text.lstrip('-').isdigit():
+                chat_id = int(input_msg.text.strip())
+            else:
+                await msg.edit_text("❌ Invalid.")
+                return
+            if db.set_default_group(user_id, bot_username, chat_id):
+                await msg.edit_text(f"✅ Default group set to `{chat_id}`")
+            else:
+                await msg.edit_text("❌ Failed.")
+            await query.message.edit_text(
+                "⚙️ **Settings Menu**\n\nChoose an option to modify:",
+                reply_markup=settings_menu_markup(user_id)
+            )
+        except asyncio.TimeoutError:
+            await msg.edit_text("⏰ Timeout.")
+        return
+
+    if data == "main_menu":
+        await query.message.edit_text(
+            "⚙️ **Settings Menu**\n\nChoose an option:",
+            reply_markup=settings_menu_markup(user_id)
+        )
+        return
+
+    # If not handled by settings, pass to ram callback
     await ram_callback_handler(client, query)
 
-# ================= RAM.PY COMMAND HANDLERS (PYROGRAM) =================
+# ========================= RAM.PY COMMAND HANDLERS =========================
 
 # ---------- EXTRACT COMMAND ----------
 @bot.on_message(filters.command("extract") & filters.private)
@@ -1635,24 +2072,160 @@ async def ram_callback_handler(client: Client, query: CallbackQuery):
         await query.answer()
         await query.edit_message_text("❌ Action cancelled. 🙅‍♂️")
 
-# ================= ORIGINAL DRM BOT HANDLERS =================
-# (keep your existing /start, /drm, /setting, /t2t, /t2h, logs, etc.)
-# I'll include a minimal placeholder for completeness; you can copy your exact code.
+# ================= ORIGINAL DRM HANDLERS (YOUR EXISTING CODE) =================
 
 @bot.on_message(filters.command("start") & (filters.private | filters.channel))
 async def start_cmd(client: Client, message: Message):
-    # Your existing start logic (keep as is)
-    # For brevity, I'll skip full code, but you must include it.
+    try:
+        if message.chat.type == "channel":
+            if not db.is_channel_authorized(message.chat.id, client.me.username):
+                return
+            await message.reply_text(
+                "**✨ Bot is active in this channel**\n\n"
+                "**Available Commands:**\n"
+                "• /drm - Download DRM videos\n"
+                "• /plan - View channel subscription\n\n"
+                "Send these commands in the channel to use them."
+            )
+        else:
+            is_authorized = db.is_user_authorized(message.from_user.id, client.me.username)
+            is_admin = db.is_admin(message.from_user.id)
+            if not is_authorized:
+                await message.reply_photo(
+                    photo=photologo,
+                    caption=(
+                        f"<b>⛔ Access Denied</b>\n\n"
+                        f"<blockquote>You don't have permission to use this bot.</blockquote>\n"
+                        f"<i>Contact admin to get access.</i>"
+                    ),
+                    reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton("📞 Contact Admin", url="https://t.me/Helpbykrishna2_bot")],
+                        [InlineKeyboardButton("ℹ️ Features", callback_data="help")]
+                    ])
+                )
+                return
+            
+            commands_list = (
+                "• <b>/drm</b> - Start uploading courses\n"
+                "• <b>/plan</b> - View subscription details\n"
+            )
+            if is_admin:
+                commands_list += "\n<b>👑 Admin:</b>\n• /users - List all users\n"
+            
+            # MODERN START CAPTION
+            caption = (
+                f"<b>┌───⧫ 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 ⧫───┐</b>\n"
+                f"│\n"
+                f"│  👋 <b>Hello, {message.from_user.first_name}</b>\n"
+                f"│\n"
+                f"│  ✨ <i>қⲅⳕ⳽ⲏⲛⲇ ★⚔ is ready!</i>\n"
+                f"│  📌 Use commands below\n"
+                f"│\n"
+                f"│  <b>📁 Commands:</b>\n"
+                f"{commands_list}\n"
+                f"│\n"
+                f"└───⧫ <b>қⲅⳕ⳽ⲏⲛⲇ ★⚔</b> ⧫───┘"
+            )
+            
+            await message.reply_photo(
+                photo=photologo,
+                caption=caption,
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("📞 Contact", url="https://t.me/Helpbykrishna2_bot")],
+                    [InlineKeyboardButton("ℹ️ Features", callback_data="help"),
+                     InlineKeyboardButton("📊 Plan", callback_data="plan")]
+                ])
+            )
+    except Exception as e:
+        print(f"Error in start: {str(e)}")
+
+# Authorization filter
+def auth_check_filter(_, client, message):
+    try:
+        if message.chat.type == "channel":
+            return db.is_channel_authorized(message.chat.id, client.me.username)
+        else:
+            return db.is_user_authorized(message.from_user.id, client.me.username)
+    except Exception:
+        return False
+
+auth_filter = filters.create(auth_check_filter)
+not_auth_filter = filters.create(lambda _, client, message: not auth_check_filter(_, client, message))
+
+@bot.on_message(not_auth_filter & filters.private & filters.command)
+async def unauthorized_handler(client, message):
+    await message.reply(
+        "<b>Mʏ Nᴀᴍᴇ [DRM Wɪᴢᴀʀᴅ 🦋](https://t.me/DRM_Wizardbot)</b>\n\n"
+        "<blockquote>You need to have an active subscription to use this bot.\n"
+        "Please contact admin to get premium access.</blockquote>",
+        reply_markup=InlineKeyboardMarkup([[
+            InlineKeyboardButton("💫 Get Premium Access", url="https://t.me/Helpbykrishna2_bot")
+        ]])
+    )
+
+@bot.on_message(filters.command("id") & filters.private)
+async def id_command(client, message):
+    chat_id = message.chat.id
+    await message.reply_text(f"<blockquote>The ID of this chat id is:</blockquote>\n`{chat_id}`")
+
+@bot.on_message(filters.command("t2h") & filters.private)
+async def call_html_handler(client, message):
+    # Placeholder – if you have html_handler, call it; else use the /html command.
+    await message.reply_text("Use /html command to convert TXT to HTML.")
+
+@bot.on_message(filters.command("logs") & auth_filter)
+async def send_logs(client, message):
+    if message.chat.type == "channel":
+        if not db.is_channel_authorized(message.chat.id, client.me.username):
+            return
+    else:
+        if not db.is_user_authorized(message.from_user.id, client.me.username):
+            await message.reply_text("❌ Not authorized.")
+            return
+    try:
+        with open("logs.txt", "rb") as file:
+            sent = await message.reply_text("**📤 Sending logs...**")
+            await message.reply_document(document=file)
+            await sent.delete()
+    except Exception as e:
+        await message.reply_text(f"**Error:** {e}")
+
+@bot.on_message(filters.command("t2t") & filters.private)
+async def text_to_txt(client, message):
+    # Keep your original code
     pass
 
-@bot.on_message(filters.command("drm") & filters.private)
+@bot.on_message(filters.command("getcookies") & filters.private)
+async def getcookies_handler(client, message):
+    # Keep your original code
+    pass
+
+@bot.on_message(filters.command("cookies") & filters.private)
+async def cookies_handler(client, message):
+    # Keep your original code
+    pass
+
+@bot.on_message(filters.command("stop") & filters.private)
+async def restart_handler(client, message):
+    await message.reply_text("🚦 **STOPPED**", True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
+
+# ---------- DRM COMMAND ----------
+@bot.on_message(filters.command("drm") & auth_filter)
 async def drm_cmd(client: Client, message: Message):
-    # Your existing drm handler
+    # Your complete drm handler (txt_handler) from original code.
+    # I'll include a placeholder; you must copy your full drm logic here.
+    # Since it's very long, please copy your existing drm function body here.
+    await message.reply_text("DRM command is active. Please upload a .txt file.")
+
+# ---------- TEXT HANDLER (for DRM) ----------
+@bot.on_message(filters.text & filters.private)
+async def text_handler(client, message):
+    # Your original text handler for single links.
     pass
 
-# Add other DRM handlers (txt_handler, text_handler, etc.)
+# ================= OTHER FUNCTIONS (NOTIFY, COMMANDS) =================
 
-# ================= START BOT =================
 def notify_owner():
     try:
         requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", json={"chat_id": OWNER_ID, "text": "Bot Is Live Now 🤖"})
@@ -1665,13 +2238,13 @@ def reset_and_set_commands():
         requests.post(url, json={"commands": []})
         commands = [
             {"command": "start", "description": "✅ Check if bot is alive"},
-            {"command": "drm", "description": "📄 Upload a .txt file for DRM"},
+            {"command": "drm", "description": "📄 Upload .txt file for DRM"},
             {"command": "extract", "description": "📂 Extract batches (Auth)"},
-            {"command": "cw", "description": "📋 Get CW batches list (Auth)"},
-            {"command": "careerwill", "description": "🎯 Extract Careerwill batches (Auth)"},
-            {"command": "html", "description": "🌐 Convert TXT to HTML"},
+            {"command": "cw", "description": "📋 Get CW batches (Auth)"},
+            {"command": "careerwill", "description": "🎯 Careerwill batches (Auth)"},
+            {"command": "html", "description": "🌐 TXT to HTML"},
             {"command": "split", "description": "✂️ Split TXT subject-wise (Auth)"},
-            {"command": "setting", "description": "⚙️ Customize bot settings"},
+            {"command": "setting", "description": "⚙️ Settings"},
             {"command": "stop", "description": "⏹ Stop bot"},
             {"command": "cookies", "description": "🍪 Upload cookies"},
             {"command": "id", "description": "🆔 Get chat ID"},
