@@ -85,7 +85,7 @@ DEFAULT_SETTINGS = {
     "resume": False,
     "downloader_name": "🥀°𓏲кяιѕнηα⋆🌿",
     "show_extension": True,
-    "caption_style": "default",
+    "caption_style": "premium_card",  # <-- Default style set to Premium Card
     "show_title": True,
     "quality": "480",
     "thumbnail": "default",
@@ -157,7 +157,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"│  <b>📌 Index</b> : {str(count).zfill(3)}\n"
             f"│  <b>📚 Batch</b> : {batch_blockquote}\n"
             f"│  <b>📖 Title</b> : {name1}\n"
-            f"│  <b>📤 Ext</b> : .{ext_actual}\n"
+            f"│  <b>📤 Ext</b> : {CR}.{ext_actual}\n"
             f"│  <b>📐 Res</b> : {res}\n"
             f"│  <b>📅 Date</b> : {date_str}\n"
             f"│\n"
@@ -173,7 +173,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>🧭 ID</b> : {str(count).zfill(3)}\n"
             f"  <b>📦 Batch</b> : {batch_blockquote}\n"
             f"  <b>📄 Title</b> : {name1}\n"
-            f"  <b>⚡ Ext</b> : .{ext_actual}\n"
+            f"  <b>⚡ Ext</b> : {CR}.{ext_actual}\n"
             f"  <b>📊 Res</b> : {res}\n"
             f"  <b>📆 Date</b> : {date_str}\n\n"
             f"◣━━━━━━━⧫ <b>{CR}</b> ⧫━━━━━━━◢\n"
@@ -189,7 +189,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>┃  🏷️ ID</b>  : {str(count).zfill(3)}\n"
             f"<b>┃  📁 Batch</b> : {batch_blockquote}\n"
             f"<b>┃  📌 Title</b> : {name1}\n"
-            f"<b>┃  💾 Ext</b>  : .{ext_actual}\n"
+            f"<b>┃  💾 Ext</b>  : {CR}.{ext_actual}\n"
             f"<b>┃  📐 Res</b>  : {res}\n"
             f"<b>┃  📅 Date</b> : {date_str}\n"
             f"<b>┃</b>\n"
@@ -208,7 +208,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>║  ◆ ID</b>    : {str(count).zfill(3)}\n"
             f"<b>║  ◆ Batch</b> : {batch_blockquote}\n"
             f"<b>║  ◆ Title</b> : {name1}\n"
-            f"<b>║  ◆ Ext</b>   : .{ext_actual}\n"
+            f"<b>║  ◆ Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>║  ◆ Res</b>   : {res}\n"
             f"<b>║  ◆ Date</b>  : {date_str}\n"
             f"<b>║</b>\n"
@@ -226,7 +226,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>🆔 Index</b> : {str(count).zfill(3)}\n"
             f"  <b>📦 Batch</b> : {batch_blockquote}\n"
             f"  <b>📄 Title</b> : {name1}\n"
-            f"  <b>📎 Ext</b>   : .{ext_actual}\n"
+            f"  <b>📎 Ext</b>   : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>   : {res}\n"
             f"  <b>📆 Date</b>  : {date_str}\n\n"
             f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
@@ -242,7 +242,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>│  ╭─▶ ID</b>    : {str(count).zfill(3)}\n"
             f"<b>│  ├─▶ Batch</b> : {batch_blockquote}\n"
             f"<b>│  ├─▶ Title</b> : {name1}\n"
-            f"<b>│  ├─▶ Ext</b>   : .{ext_actual}\n"
+            f"<b>│  ├─▶ Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>│  ├─▶ Res</b>   : {res}\n"
             f"<b>│  ╰─▶ Date</b>  : {date_str}\n"
             f"<b>│</b>\n"
@@ -261,7 +261,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>║  ✦ Index</b>   : {str(count).zfill(3)}\n"
             f"<b>║  ✦ Batch</b>   : {batch_blockquote}\n"
             f"<b>║  ✦ Title</b>   : {name1}\n"
-            f"<b>║  ✦ Format</b>  : .{ext_actual}\n"
+            f"<b>║  ✦ Format</b>  : {CR}.{ext_actual}\n"
             f"<b>║  ✦ Quality</b> : {res}\n"
             f"<b>║  ✦ Date</b>    : {date_str}\n"
             f"<b>║</b>\n"
@@ -280,7 +280,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>⚡ ID</b>   : {str(count).zfill(3)}\n"
             f"  <b>📦 Batch</b> : {batch_blockquote}\n"
             f"  <b>📌 Title</b> : {name1}\n"
-            f"  <b>🎯 Ext</b>  : .{ext_actual}\n"
+            f"  <b>🎯 Ext</b>  : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>  : {res}\n"
             f"  <b>📅 Date</b> : {date_str}\n\n"
             f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
@@ -296,7 +296,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>📌</b> {str(count).zfill(3)}\n"
             f"  <b>📚</b> {batch_blockquote}\n"
             f"  <b>📖</b> {name1}\n"
-            f"  <b>💾</b> .{ext_actual}\n"
+            f"  <b>💾</b> {CR}.{ext_actual}\n"
             f"  <b>📐</b> {res}\n"
             f"  <b>📆</b> {date_str}\n\n"
             f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
@@ -318,7 +318,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>│  ID</b>    : {str(count).zfill(3)}\n"
             f"<b>│  Batch</b> : {batch_blockquote}\n"
             f"<b>│  Title</b> : {name1}\n"
-            f"<b>│  Ext</b>   : .{ext_actual}\n"
+            f"<b>│  Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>│  Res</b>   : {res}\n"
             f"<b>│  Date</b>  : {date_str}\n"
             f"<b>├─────────────────────────┤</b>\n"
@@ -335,7 +335,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>🪐 Index</b> : {str(count).zfill(3)}\n"
             f"  <b>🌌 Batch</b> : {batch_blockquote}\n"
             f"  <b>📖 Title</b> : {name1}\n"
-            f"  <b>🔗 Ext</b>  : .{ext_actual}\n"
+            f"  <b>🔗 Ext</b>  : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>  : {res}\n"
             f"  <b>📅 Date</b> : {date_str}\n\n"
             f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
@@ -352,7 +352,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"  <b>• ID</b>    : {str(count).zfill(3)}\n"
             f"  <b>• Batch</b> : {batch_blockquote}\n"
             f"  <b>• Title</b> : {name1}\n"
-            f"  <b>• Ext</b>   : .{ext_actual}\n"
+            f"  <b>• Ext</b>   : {CR}.{ext_actual}\n"
             f"  <b>• Res</b>   : {res}\n"
             f"  <b>• Date</b>  : {date_str}\n\n"
             f"<b>· · · · · · · · · · · · · · ·</b>\n"
@@ -367,7 +367,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
             f"<b>📥 Title:</b> {name1}\n\n"
             f"[{date_str}]\n\n"
-            f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
+            f"<b>📤 Extension:</b> {CR}.{ext_actual}\n"
             f"<b>🧩 Resolution:</b> {res}\n\n"
             f"<b>🍁 Uploaded By:</b> {CR}\n\n"
             f"{time_str}"
@@ -399,7 +399,7 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(f"Show Extension {status('show_extension')}", callback_data="set_show_extension_toggle")])
     
     # Caption Style with display name
-    current_style = settings.get('caption_style', 'default')
+    current_style = settings.get('caption_style', 'premium_card')
     display_name = STYLE_DISPLAY_NAMES.get(current_style, current_style)
     buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {display_name}", callback_data="set_caption_style")])
     
@@ -1142,7 +1142,7 @@ async def txt_handler(bot: Client, m: Message):
 
             # ========== FRESH FETCH USER SETTINGS FOR EACH VIDEO ==========
             user_settings = get_user_settings(m.from_user.id, bot_username)
-            caption_style = user_settings.get("caption_style", "default")
+            caption_style = user_settings.get("caption_style", "premium_card")  # default to premium_card
             
             if user_settings.get("auto_grouping", False):
                 group_chat_id = db.get_group_for_file(m.from_user.id, name1, bot_username)
@@ -1579,7 +1579,7 @@ async def text_handler(bot: Client, m: Message):
         
         # Get user's caption style
         user_settings = get_user_settings(m.from_user.id, bot_username)
-        caption_style = user_settings.get("caption_style", "default")
+        caption_style = user_settings.get("caption_style", "premium_card")  # default to premium_card
 
         # Direct download using helper
         res_file = await helper.download_video(url, cmd, name)
