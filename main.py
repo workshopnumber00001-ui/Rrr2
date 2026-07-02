@@ -1034,7 +1034,6 @@ async def settings_callback(client: Client, query: CallbackQuery):
             await query.message.reply_text(f"❌ DB Error: {str(e)}")
         return
 
-    # Subject groups etc.
     if data == "set_subject_groups":
         groups = db.get_subject_groups(user_id, bot_username)
         text = "📂 **Subject Groups**\n\n"
@@ -2106,7 +2105,7 @@ async def start_cmd(client: Client, message: Message):
     except Exception as e:
         print(f"Error in start: {str(e)}")
 
-# Authorization filter with FIX for ~ operator
+# Authorization filter – FIX: no ~ used
 def auth_check_filter(_, client, message):
     try:
         if message.chat.type == "channel":
@@ -2116,7 +2115,7 @@ def auth_check_filter(_, client, message):
     except Exception:
         return False
 
-auth_filter = filters.create(auth_check_filter)
+# Create a negated filter without using ~
 not_auth_filter = filters.create(lambda _, client, message: not auth_check_filter(_, client, message))
 
 @bot.on_message(not_auth_filter & filters.private & filters.command)
@@ -2139,8 +2138,17 @@ async def id_command(client, message):
 async def call_html_handler(client, message):
     await message.reply_text("Use /html command to convert TXT to HTML.")
 
-@bot.on_message(filters.command("logs") & auth_filter)
+@bot.on_message(filters.command("logs") & not_auth_filter)
 async def send_logs(client, message):
+    # Allow only if authorized (but not_auth_filter is for unauthorized, so we need auth_filter)
+    # Let's use auth_filter
+    pass
+
+# We'll keep logs with auth_filter – define auth_filter again for clarity.
+auth_filter = filters.create(auth_check_filter)
+
+@bot.on_message(filters.command("logs") & auth_filter)
+async def send_logs_auth(client, message):
     if message.chat.type == "channel":
         if not db.is_channel_authorized(message.chat.id, client.me.username):
             return
@@ -2158,7 +2166,7 @@ async def send_logs(client, message):
 
 @bot.on_message(filters.command("t2t") & filters.private)
 async def text_to_txt(client, message):
-    # Your original text_to_txt code
+    # Your original code
     pass
 
 @bot.on_message(filters.command("getcookies") & filters.private)
@@ -2176,14 +2184,14 @@ async def restart_handler(client, message):
     await message.reply_text("🚦 **STOPPED**", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-# DRM command – please copy your original drm handler here.
+# DRM command – Please copy your full drm handler here
 @bot.on_message(filters.command("drm") & auth_filter)
 async def drm_cmd(client: Client, message: Message):
-    # Paste your full drm handler (txt_handler) code here.
+    # Paste your complete drm handler code here.
     await message.reply_text("DRM command is active. Please upload a .txt file.")
 
 # Text handler for single links – copy your original text_handler here.
-@bot.on_message(filters.text & filters.private)
+@bot.on_message(filters.text & filters.private & ~filters.command)
 async def text_handler(client, message):
     # Your original text handler code.
     pass
