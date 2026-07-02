@@ -71,59 +71,46 @@ async def progress_bar(current, total, reply, start):
     percent = (current / total) * 100
     eta_seconds = (total - current) / speed if speed > 0 else 0
 
-    bar_length = 12
+    bar_length = 14  # Slightly longer bar
 
-    # Calculate how many blocks filled (float for smoothness)
+    # Calculate how many blocks filled
     progress_ratio = current / total
     filled_length = progress_ratio * bar_length
 
-    progress_bar_list = []
+    # Build progress bar with █ and ░
+    filled = int(filled_length)
+    remaining = bar_length - filled
+    bar_str = "█" * filled + "░" * remaining
 
-    for i in range(bar_length):
-        # Position index in bar (0-based)
-        pos = i + 1
+    # Format numbers with 2 decimals
+    speed_str = hrb(speed)
+    current_str = hrb(current)
+    total_str = hrb(total)
+    eta_str = hrt(eta_seconds, 1)
 
-        if pos <= int(filled_length):
-            # Fully filled block — decide green or orange
-            # If in last 30% of progress, make green
-            if progress_ratio > 0.7:
-                # The left part turns green from 70% progress onwards
-                progress_bar_list.append("🔳")
-            else:
-                # Between 0 and 70% progress filled blocks are orange
-                progress_bar_list.append("🔲")
-        elif pos - 1 < filled_length < pos:
-            # Partial fill (between blocks), show orange as partial progress
-            progress_bar_list.append("◻️")
-        else:
-            # Not filled yet, show white block
-            progress_bar_list.append("◻️")
+    # Get credit name (from vars or fallback)
+    try:
+        credit_name = CREDIT
+    except:
+        credit_name = "Krishna"
 
-    # Extra tweak: if progress > 90%, all filled blocks green
-    if progress_ratio >= 0.9:
-        for i in range(int(filled_length)):
-            progress_bar_list[i] = "◻️"
-
-    progress_bar_str = "".join(progress_bar_list)
-
+    # Modern progress message (Premium Card style)
     msg = (
-        f"╭───⌯═════ 𝐁𝐎𝐓 𝐏𝐑𝐎𝐆𝐑𝐄𝐒𝐒 ═════⌯\n"
-        f"├  **{percent:.1f}%** `{progress_bar_str}`\n├\n"
-        f"├ 🛜  𝗦𝗣𝗘𝗘𝗗 ➤ | {hrb(speed)}/s \n"
-        f"├ ♻️  𝗣𝗥𝗢𝗖𝗘𝗦𝗦𝗘𝗗 ➤ | {hrb(current)} \n"
-        f"├ 📦  𝗦𝗜𝗭𝗘 ➤ | {hrb(total)} \n"
-        f"├ ⏰  𝗘𝗧𝗔 ➤ | {hrt(eta_seconds, 1)}\n\n"
-        f"╰─═══ **⌯ Krishna | ×͜× | **═══─╯"
+        f"<b>┌────────────────────────────────┐</b>\n"
+        f"<b>│  ⚡ UPLOAD PROGRESS</b>\n"
+        f"<b>├────────────────────────────────┤</b>\n"
+        f"<b>│  {bar_str} {percent:.1f}%</b>\n"
+        f"<b>│</b>\n"
+        f"<b>│  🚀 Speed  : {speed_str}/s</b>\n"
+        f"<b>│  📦 Processed: {current_str}</b>\n"
+        f"<b>│  📊 Total   : {total_str}</b>\n"
+        f"<b>│  ⏳ ETA     : {eta_str}</b>\n"
+        f"<b>├────────────────────────────────┤</b>\n"
+        f"<b>│  ╰─ Powered by {credit_name}</b>\n"
+        f"<b>└────────────────────────────────┘</b>"
     )
 
     try:
         await reply.edit(msg)
     except FloodWait as e:
         time.sleep(e.x)
-
-
-
-
-
-
-
