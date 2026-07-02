@@ -112,6 +112,234 @@ bot = Client(
 # Register clean handler
 register_clean_handler(bot)
 
+# ========================= VIDEO CAPTION STYLES =========================
+
+def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, date_str, time_str, CR):
+    """Generate video caption based on selected style"""
+    
+    if style == "minimal_glass":
+        return (
+            f"<b>┌───⧫ 𝐕𝐈𝐃𝐄𝐎 𝐈𝐍𝐅𝐎 ⧫───┐</b>\n"
+            f"│\n"
+            f"│  <b>📌 Index</b> : {str(count).zfill(3)}\n"
+            f"│  <b>📚 Batch</b> : {batch_blockquote}\n"
+            f"│  <b>📖 Title</b> : {name1}\n"
+            f"│  <b>📤 Ext</b> : .{ext_actual}\n"
+            f"│  <b>📐 Res</b> : {res}\n"
+            f"│  <b>📅 Date</b> : {date_str}\n"
+            f"│\n"
+            f"├───⧫ <b>UPLOADED BY</b> ⧫───┤\n"
+            f"│  <b>{CR}</b>\n"
+            f"│\n"
+            f"└───⧫ {time_str} ⧫───┘"
+        )
+    
+    elif style == "neon_glow":
+        return (
+            f"<b>◤━━━━━━━━━⧫ 𝐕𝐈𝐃𝐄𝐎 ⧫━━━━━━━━━◥</b>\n\n"
+            f"  <b>🧭 ID</b> : {str(count).zfill(3)}\n"
+            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📄 Title</b> : {name1}\n"
+            f"  <b>⚡ Ext</b> : .{ext_actual}\n"
+            f"  <b>📊 Res</b> : {res}\n"
+            f"  <b>📆 Date</b> : {date_str}\n\n"
+            f"◣━━━━━━━⧫ <b>{CR}</b> ⧫━━━━━━━◢\n"
+            f"<i>{time_str}</i>"
+        )
+    
+    elif style == "premium_card":
+        return (
+            f"<b>┏━━━━━━━━━━━━━━━━━━━━━━┓</b>\n"
+            f"<b>┃  ⚡ 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄𝐓𝐀𝐈𝐋𝐒</b>\n"
+            f"<b>┣━━━━━━━━━━━━━━━━━━━━━━┫</b>\n"
+            f"<b>┃</b>\n"
+            f"<b>┃  🏷️ ID</b>  : {str(count).zfill(3)}\n"
+            f"<b>┃  📁 Batch</b> : {batch_blockquote}\n"
+            f"<b>┃  📌 Title</b> : {name1}\n"
+            f"<b>┃  💾 Ext</b>  : .{ext_actual}\n"
+            f"<b>┃  📐 Res</b>  : {res}\n"
+            f"<b>┃  📅 Date</b> : {date_str}\n"
+            f"<b>┃</b>\n"
+            f"<b>┣━━━━━━━━━━━━━━━━━━━━━━┫</b>\n"
+            f"<b>┃  🎯 {CR}</b>\n"
+            f"<b>┗━━━━━━━━━━━━━━━━━━━━━━┛</b>\n"
+            f"\n<i>{time_str}</i>"
+        )
+    
+    elif style == "dark_futuristic":
+        return (
+            f"<b>╔═══════════════════════╗</b>\n"
+            f"<b>║  🔥 VIDEO DETAILS</b>\n"
+            f"<b>╠═══════════════════════╣</b>\n"
+            f"<b>║</b>\n"
+            f"<b>║  ◆ ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>║  ◆ Batch</b> : {batch_blockquote}\n"
+            f"<b>║  ◆ Title</b> : {name1}\n"
+            f"<b>║  ◆ Ext</b>   : .{ext_actual}\n"
+            f"<b>║  ◆ Res</b>   : {res}\n"
+            f"<b>║  ◆ Date</b>  : {date_str}\n"
+            f"<b>║</b>\n"
+            f"<b>╠═══════════════════════╣</b>\n"
+            f"<b>║  ✦ {CR}</b>\n"
+            f"<b>╚═══════════════════════╝</b>\n\n"
+            f"<i>⏱ {time_str}</i>"
+        )
+    
+    elif style == "clean_professional":
+        return (
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"<b>  📌 VIDEO DETAILS</b>\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n\n"
+            f"  <b>🆔 Index</b> : {str(count).zfill(3)}\n"
+            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📄 Title</b> : {name1}\n"
+            f"  <b>📎 Ext</b>   : .{ext_actual}\n"
+            f"  <b>📐 Res</b>   : {res}\n"
+            f"  <b>📆 Date</b>  : {date_str}\n\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"  <b>© {CR}</b>\n"
+            f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
+            f"<i>{time_str}</i>"
+        )
+    
+    elif style == "cyber_terminal":
+        return (
+            f"<b>┌─[ VIDEO ]───────────────────┐</b>\n"
+            f"<b>│</b>\n"
+            f"<b>│  ╭─▶ ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>│  ├─▶ Batch</b> : {batch_blockquote}\n"
+            f"<b>│  ├─▶ Title</b> : {name1}\n"
+            f"<b>│  ├─▶ Ext</b>   : .{ext_actual}\n"
+            f"<b>│  ├─▶ Res</b>   : {res}\n"
+            f"<b>│  ╰─▶ Date</b>  : {date_str}\n"
+            f"<b>│</b>\n"
+            f"<b>├─────────────────────────────┤</b>\n"
+            f"<b>│  🚀 {CR}</b>\n"
+            f"<b>└─────────────────────────────┘</b>\n"
+            f"\n<i>⏱ {time_str}</i>"
+        )
+    
+    elif style == "dual_border":
+        return (
+            f"<b>╔══════════════════════════════╗</b>\n"
+            f"<b>║   ✦ 𝐕𝐈𝐃𝐄𝐎 𝐃𝐄𝐓𝐀𝐈𝐋𝐒 ✦</b>\n"
+            f"<b>╠══════════════════════════════╣</b>\n"
+            f"<b>║</b>\n"
+            f"<b>║  ✦ Index</b>   : {str(count).zfill(3)}\n"
+            f"<b>║  ✦ Batch</b>   : {batch_blockquote}\n"
+            f"<b>║  ✦ Title</b>   : {name1}\n"
+            f"<b>║  ✦ Format</b>  : .{ext_actual}\n"
+            f"<b>║  ✦ Quality</b> : {res}\n"
+            f"<b>║  ✦ Date</b>    : {date_str}\n"
+            f"<b>║</b>\n"
+            f"<b>╠══════════════════════════════╣</b>\n"
+            f"<b>║  ✦ Uploaded By</b>\n"
+            f"<b>║  ╰─ {CR}</b>\n"
+            f"<b>╚══════════════════════════════╝</b>\n\n"
+            f"<i>🕐 {time_str}</i>"
+        )
+    
+    elif style == "rounded_neon":
+        return (
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"<b>▣  🔥 VIDEO INFO</b>\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n\n"
+            f"  <b>⚡ ID</b>   : {str(count).zfill(3)}\n"
+            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📌 Title</b> : {name1}\n"
+            f"  <b>🎯 Ext</b>  : .{ext_actual}\n"
+            f"  <b>📐 Res</b>  : {res}\n"
+            f"  <b>📅 Date</b> : {date_str}\n\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"  <b>🌟 {CR}</b>\n"
+            f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
+            f"\n<i>⏰ {time_str}</i>"
+        )
+    
+    elif style == "instagram":
+        return (
+            f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n\n"
+            f"  <b>🎬 VIDEO</b>\n\n"
+            f"  <b>📌</b> {str(count).zfill(3)}\n"
+            f"  <b>📚</b> {batch_blockquote}\n"
+            f"  <b>📖</b> {name1}\n"
+            f"  <b>💾</b> .{ext_actual}\n"
+            f"  <b>📐</b> {res}\n"
+            f"  <b>📆</b> {date_str}\n\n"
+            f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
+            f"  <b>💫 {CR}</b>\n"
+            f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
+            f"\n<i>{time_str}</i>"
+        )
+    
+    elif style == "matrix":
+        return (
+            f"<b>┌─────────────────────────┐</b>\n"
+            f"<b>│  ███╗  ██╗███████╗ ██████╗</b>\n"
+            f"<b>│  ████╗ ██║██╔════╝██╔═══██╗</b>\n"
+            f"<b>│  ██╔██╗██║█████╗  ██║   ██║</b>\n"
+            f"<b>│  ██║╚████║██╔══╝  ██║   ██║</b>\n"
+            f"<b>│  ██║ ╚███║██║     ╚██████╔╝</b>\n"
+            f"<b>│  ╚═╝  ╚══╝╚═╝      ╚═════╝</b>\n"
+            f"<b>├─────────────────────────┤</b>\n"
+            f"<b>│  ID</b>    : {str(count).zfill(3)}\n"
+            f"<b>│  Batch</b> : {batch_blockquote}\n"
+            f"<b>│  Title</b> : {name1}\n"
+            f"<b>│  Ext</b>   : .{ext_actual}\n"
+            f"<b>│  Res</b>   : {res}\n"
+            f"<b>│  Date</b>  : {date_str}\n"
+            f"<b>├─────────────────────────┤</b>\n"
+            f"<b>│  ▶ {CR}</b>\n"
+            f"<b>└─────────────────────────┘</b>\n"
+            f"\n<i>⏱ {time_str}</i>"
+        )
+    
+    elif style == "space_galaxy":
+        return (
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
+            f"<b>    🌟 VIDEO DETAILS</b>\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
+            f"  <b>🪐 Index</b> : {str(count).zfill(3)}\n"
+            f"  <b>🌌 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📖 Title</b> : {name1}\n"
+            f"  <b>🔗 Ext</b>  : .{ext_actual}\n"
+            f"  <b>📐 Res</b>  : {res}\n"
+            f"  <b>📅 Date</b> : {date_str}\n\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
+            f"  <b>⭐ {CR}</b>\n"
+            f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
+            f"<i>🕐 {time_str}</i>"
+        )
+    
+    elif style == "minimal_dots":
+        return (
+            f"<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"<b>  📌 VIDEO</b>\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n\n"
+            f"  <b>• ID</b>    : {str(count).zfill(3)}\n"
+            f"  <b>• Batch</b> : {batch_blockquote}\n"
+            f"  <b>• Title</b> : {name1}\n"
+            f"  <b>• Ext</b>   : .{ext_actual}\n"
+            f"  <b>• Res</b>   : {res}\n"
+            f"  <b>• Date</b>  : {date_str}\n\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"  <b>{CR}</b>\n"
+            f"<b>· · · · · · · · · · · · · · ·</b>\n"
+            f"\n<i>{time_str}</i>"
+        )
+    
+    else:  # default
+        return (
+            f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
+            f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
+            f"<b>📥 Title:</b> {name1}\n\n"
+            f"[{date_str}]\n\n"
+            f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
+            f"<b>🧩 Resolution:</b> {res}\n\n"
+            f"<b>🍁 Uploaded By:</b> {CR}\n\n"
+            f"{time_str}"
+        )
+
 # ========================= SETTINGS SYSTEM =========================
 
 def get_user_settings(user_id: int, bot_username: str = None) -> dict:
@@ -136,7 +364,7 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(f"Resume Interrupted {status('resume')}", callback_data="set_resume_toggle")])
     buttons.append([InlineKeyboardButton(f"Downloader Name: {settings['downloader_name'][:10]}", callback_data="set_downloader_name")])
     buttons.append([InlineKeyboardButton(f"Show Extension {status('show_extension')}", callback_data="set_show_extension_toggle")])
-    buttons.append([InlineKeyboardButton(f"Caption Style: {settings['caption_style']}", callback_data="set_caption_style")])
+    buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {settings.get('caption_style', 'default')}", callback_data="set_caption_style")])
     buttons.append([InlineKeyboardButton(f"Show Title {status('show_title')}", callback_data="set_show_title_toggle")])
     buttons.append([InlineKeyboardButton(f"Quality: {settings['quality']}p", callback_data="set_quality")])
     buttons.append([InlineKeyboardButton(f"Thumbnail: {'Custom' if settings['thumbnail']!='default' else 'Default'}", callback_data="set_thumbnail")])
@@ -191,23 +419,55 @@ async def settings_callback(client: Client, query: CallbackQuery):
         return
 
     if data == "set_caption_style":
-        styles = ["default", "minimal", "detailed"]
+        styles = [
+            "default",
+            "minimal_glass",
+            "neon_glow",
+            "premium_card",
+            "dark_futuristic",
+            "clean_professional",
+            "cyber_terminal",
+            "dual_border",
+            "rounded_neon",
+            "instagram",
+            "matrix",
+            "space_galaxy",
+            "minimal_dots"
+        ]
         buttons = []
+        style_display = {
+            "default": "📝 Default",
+            "minimal_glass": "🔲 Minimal Glass",
+            "neon_glow": "💜 Neon Glow",
+            "premium_card": "💎 Premium Card",
+            "dark_futuristic": "🌑 Dark Futuristic",
+            "clean_professional": "✨ Clean Pro",
+            "cyber_terminal": "💻 Cyber/Terminal",
+            "dual_border": "🏛️ Dual Border",
+            "rounded_neon": "🎯 Rounded Neon",
+            "instagram": "📸 Instagram Style",
+            "matrix": "💚 Matrix/Code",
+            "space_galaxy": "🌌 Space Galaxy",
+            "minimal_dots": "⚪ Minimal Dots"
+        }
         for style in styles:
             check = " ✅" if settings.get("caption_style") == style else ""
-            buttons.append([InlineKeyboardButton(f"{style}{check}", callback_data=f"set_caption_style_{style}")])
+            display_name = style_display.get(style, style)
+            buttons.append([InlineKeyboardButton(f"{display_name}{check}", callback_data=f"set_caption_style_{style}")])
         buttons.append([InlineKeyboardButton("🔙 Back", callback_data="main_menu")])
         await query.message.edit_text(
-            "🎨 **Select Caption Style:**",
+            "🎨 **Select Caption Style:**\n\n"
+            "<i>Choose how video captions should look.</i>",
             reply_markup=InlineKeyboardMarkup(buttons)
         )
         return
 
     if data.startswith("set_caption_style_"):
         style = data.replace("set_caption_style_", "")
-        if style in ["default", "minimal", "detailed"]:
+        valid_styles = ["default", "minimal_glass", "neon_glow", "premium_card", "dark_futuristic", "clean_professional", "cyber_terminal", "dual_border", "rounded_neon", "instagram", "matrix", "space_galaxy", "minimal_dots"]
+        if style in valid_styles:
             update_setting(user_id, "caption_style", style, bot_username)
-            await query.answer(f"Caption style set to {style}")
+            await query.answer(f"✅ Caption style set to {style}")
             await query.message.edit_reply_markup(reply_markup=settings_menu_markup(user_id))
         return
 
@@ -226,6 +486,7 @@ async def settings_callback(client: Client, query: CallbackQuery):
 
     if data.startswith("set_quality_"):
         q = data.replace("set_quality_", "")
+        qualities = ["144", "240", "360", "480", "720", "1080"]
         if q in qualities:
             update_setting(user_id, "quality", q, bot_username)
             await query.answer(f"Quality set to {q}p")
@@ -946,20 +1207,18 @@ async def txt_handler(bot: Client, m: Message):
             date_str = current_ist.strftime('%d-%m-%Y')
             time_str = current_ist.strftime('%A, %d %B %Y • %I:%M %p')
             batch_blockquote = f'<blockquote>{b_name}</blockquote>'
+            
+            # Get user's caption style
+            user_settings = get_user_settings(m.from_user.id, bot_username)
+            caption_style = user_settings.get("caption_style", "default")
 
             try:
                 if "drive" in url:
                     ka = await helper.download(url, name)
                     ext_actual = "pdf"
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await bot.send_document(chat_id=channel_id, document=ka, caption=cc)
                     count += 1
@@ -981,15 +1240,9 @@ async def txt_handler(bot: Client, m: Message):
                                     with open(f'{name}.pdf', 'wb') as file:
                                         file.write(response.content)
                                     ext_actual = "pdf"
-                                    cc = (
-                                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                                        f"<b>📥 Title:</b> {name1}\n\n"
-                                        f"[{date_str}]\n\n"
-                                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                                        f"{time_str}"
+                                    cc = get_video_caption(
+                                        caption_style, count, batch_blockquote, name1, 
+                                        ext_actual, res, date_str, time_str, CR
                                     )
                                     await bot.send_document(chat_id=channel_id, document=f'{name}.pdf', caption=cc)
                                     count += 1
@@ -1008,15 +1261,9 @@ async def txt_handler(bot: Client, m: Message):
                         download_cmd = f"{cmd} -R 25 --fragment-retries 25"
                         os.system(download_cmd)
                         ext_actual = "pdf"
-                        cc = (
-                            f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                            f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                            f"<b>📥 Title:</b> {name1}\n\n"
-                            f"[{date_str}]\n\n"
-                            f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                            f"<b>🧩 Resolution:</b> {res}\n\n"
-                            f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                            f"{time_str}"
+                        cc = get_video_caption(
+                            caption_style, count, batch_blockquote, name1, 
+                            ext_actual, res, date_str, time_str, CR
                         )
                         await bot.send_document(chat_id=channel_id, document=f'{name}.pdf', caption=cc)
                         count += 1
@@ -1027,15 +1274,9 @@ async def txt_handler(bot: Client, m: Message):
                     await helper.pdf_download(f"{api_url}utkash-ws?url={url}&authorization={api_token}", f"{name}.html")
                     time.sleep(1)
                     ext_actual = "html"
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await bot.send_document(chat_id=channel_id, document=f"{name}.html", caption=cc)
                     os.remove(f'{name}.html')
@@ -1046,15 +1287,9 @@ async def txt_handler(bot: Client, m: Message):
                     ext_actual = url.split('.')[-1]
                     cmd = f'yt-dlp -o "{name}.{ext_actual}" "{url}"'
                     os.system(cmd)
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await bot.send_photo(chat_id=channel_id, photo=f'{name}.{ext_actual}', caption=cc)
                     count += 1
@@ -1065,15 +1300,9 @@ async def txt_handler(bot: Client, m: Message):
                     ext_actual = url.split('.')[-1]
                     cmd = f'yt-dlp -x --audio-format {ext_actual} -o "{name}.{ext_actual}" "{url}"'
                     os.system(cmd)
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await bot.send_document(chat_id=channel_id, document=f'{name}.{ext_actual}', caption=cc)
                     os.remove(f'{name}.{ext_actual}')
@@ -1089,15 +1318,9 @@ async def txt_handler(bot: Client, m: Message):
                         await prog.delete(True)
                         if os.path.exists(filename):
                             ext_actual = os.path.splitext(filename)[1].lstrip('.')
-                            cc = (
-                                f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                                f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                                f"<b>📥 Title:</b> {name1}\n\n"
-                                f"[{date_str}]\n\n"
-                                f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                                f"<b>🧩 Resolution:</b> {res}\n\n"
-                                f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                                f"{time_str}"
+                            cc = get_video_caption(
+                                caption_style, count, batch_blockquote, name1, 
+                                ext_actual, res, date_str, time_str, CR
                             )
                             await helper.send_vid(bot, m, cc, filename, thumb, name, prog, channel_id, watermark=watermark)
                             count += 1
@@ -1119,15 +1342,9 @@ async def txt_handler(bot: Client, m: Message):
                     filename = res_file
                     await prog.delete(True)
                     ext_actual = os.path.splitext(filename)[1].lstrip('.')
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await helper.send_vid(bot, m, cc, filename, thumb, name, prog, channel_id, watermark=watermark)
                     count += 1
@@ -1141,15 +1358,9 @@ async def txt_handler(bot: Client, m: Message):
                     filename = res_file
                     await prog.delete(True)
                     ext_actual = os.path.splitext(filename)[1].lstrip('.')
-                    cc = (
-                        f"<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-                        f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
-                        f"<b>📥 Title:</b> {name1}\n\n"
-                        f"[{date_str}]\n\n"
-                        f"<b>📤 Extension:</b> {CR} .{ext_actual}\n"
-                        f"<b>🧩 Resolution:</b> {res}\n\n"
-                        f"<b>🍁 Uploaded By:</b> {CR}\n\n"
-                        f"{time_str}"
+                    cc = get_video_caption(
+                        caption_style, count, batch_blockquote, name1, 
+                        ext_actual, res, date_str, time_str, CR
                     )
                     await helper.send_vid(bot, m, cc, filename, thumb, name, prog, channel_id, watermark=watermark)
                     count += 1
@@ -1326,20 +1537,18 @@ async def text_handler(bot: Client, m: Message):
         date_str = current_ist.strftime('%d-%m-%Y')
         time_str = current_ist.strftime('%A, %d %B %Y • %I:%M %p')
         single_batch = '<blockquote>Single Video</blockquote>'
+        
+        # Get user's caption style
+        user_settings = get_user_settings(m.from_user.id, bot_username)
+        caption_style = user_settings.get("caption_style", "default")
 
         # Direct download using helper
         res_file = await helper.download_video(url, cmd, name)
         if os.path.exists(res_file):
             ext_actual = os.path.splitext(res_file)[1].lstrip('.')
-            cc = (
-                f"<b>🧭 Index ID:</b> 001\n\n"
-                f"<b>📎 Batch:</b> {single_batch}\n\n"
-                f"<b>📥 Title:</b> {name1}\n\n"
-                f"[{date_str}]\n\n"
-                f"<b>📤 Extension:</b> {CREDIT} .{ext_actual}\n"
-                f"<b>🧩 Resolution:</b> {res}\n\n"
-                f"<b>🍁 Uploaded By:</b> {CREDIT}\n\n"
-                f"{time_str}"
+            cc = get_video_caption(
+                caption_style, count, single_batch, name1, 
+                ext_actual, res, date_str, time_str, CREDIT
             )
             await helper.send_vid(bot, m, cc, res_file, thumb, name, None, channel_id, watermark=watermark)
         else:
