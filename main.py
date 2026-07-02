@@ -112,12 +112,9 @@ HEADERS = {
 
 # ================= SET IST TIMEZONE =================
 IST = pytz.timezone('Asia/Kolkata')
-
-# Global user data for ram.py features
 ram_user_data = {}
 
 # ================= HELPER FUNCTIONS (RAM.PY) =================
-
 def sanitize_filename(name):
     return re.sub(r'[^\w\s-]', '', name).strip().replace(' ', '_')
 
@@ -534,7 +531,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"\n📅 {time_str}\n"
         )
     
-    # ========== OTHER STYLES (Keep all previous styles) ==========
+    # ========== OTHER STYLES ==========
     elif style == "minimal_glass":
         return (
             f"\n<b>┌───⧫ 𝐕𝐈𝐃𝐄𝐎 𝐈𝐍𝐅𝐎 ⧫───┐</b>\n"
@@ -551,7 +548,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"│\n"
             f"└───⧫ {time_str} ⧫───┘\n"
         )
-    
     elif style == "neon_glow":
         return (
             f"\n<b>◤━━━━━━━━━⧫ 𝐕𝐈𝐃𝐄𝐎 ⧫━━━━━━━━━◥</b>\n\n"
@@ -564,7 +560,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"◣━━━━━━━⧫ <b>{CR}</b> ⧫━━━━━━━◢\n"
             f"<i>{time_str}</i>\n"
         )
-    
     elif style == "premium_card":
         return (
             f"\n<b>┏━━━━━━━━━━━━━━━━━━━━━━┓</b>\n"
@@ -583,7 +578,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>┗━━━━━━━━━━━━━━━━━━━━━━┛</b>\n"
             f"\n<i>{time_str}</i>\n"
         )
-    
     elif style == "dark_futuristic":
         return (
             f"\n<b>╔═══════════════════════╗</b>\n"
@@ -602,7 +596,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>╚═══════════════════════╝</b>\n\n"
             f"<i>⏱ {time_str}</i>\n"
         )
-    
     elif style == "clean_professional":
         return (
             f"\n<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
@@ -619,7 +612,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n"
             f"<i>{time_str}</i>\n"
         )
-    
     elif style == "cyber_terminal":
         return (
             f"\n<b>┌─[ VIDEO ]───────────────────┐</b>\n"
@@ -636,7 +628,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>└─────────────────────────────┘</b>\n"
             f"\n<i>⏱ {time_str}</i>\n"
         )
-    
     elif style == "dual_border":
         return (
             f"\n<b>╔══════════════════════════════╗</b>\n"
@@ -656,7 +647,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>╚══════════════════════════════╝</b>\n\n"
             f"<i>🕐 {time_str}</i>\n"
         )
-    
     elif style == "rounded_neon":
         return (
             f"\n<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
@@ -673,7 +663,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n"
             f"\n<i>⏰ {time_str}</i>\n"
         )
-    
     elif style == "instagram":
         return (
             f"\n<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n\n"
@@ -689,7 +678,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n"
             f"\n<i>{time_str}</i>\n"
         )
-    
     elif style == "matrix":
         return (
             f"\n<b>┌─────────────────────────┐</b>\n"
@@ -711,7 +699,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>└─────────────────────────┘</b>\n"
             f"\n<i>⏱ {time_str}</i>\n"
         )
-    
     elif style == "space_galaxy":
         return (
             f"\n<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n"
@@ -728,7 +715,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
             f"<i>🕐 {time_str}</i>\n"
         )
-    
     elif style == "minimal_dots":
         return (
             f"\n<b>· · · · · · · · · · · · · · ·</b>\n"
@@ -745,9 +731,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>· · · · · · · · · · · · · · ·</b>\n"
             f"\n<i>{time_str}</i>\n"
         )
-    
-    # ========== NEW MODERN STYLES ==========
-    
     elif style == "clean_glass":
         return (
             f"\n<b>╭─────────────────────╮</b>\n"
@@ -763,7 +746,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<i>{time_str}</i>\n"
             f"<b>  {CR}</b>\n"
         )
-    
     elif style == "smooth_flow":
         return (
             f"\n<b>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</b>\n"
@@ -779,7 +761,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<i>{time_str}</i>\n"
             f"<b>  ◆ {CR}</b>\n"
         )
-    
     elif style == "minimal_dot":
         return (
             f"\n<b>• • • • • • • • • • • • • •</b>\n"
@@ -795,7 +776,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<i>{time_str}</i>\n"
             f"<b>  {CR}</b>\n"
         )
-    
     elif style == "modern_border":
         return (
             f"\n<b>┌──────────────────────┐</b>\n"
@@ -814,7 +794,6 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>└──────────────────────┘</b>\n"
             f"\n<i>{time_str}</i>\n"
         )
-    
     elif style == "ultra_clean":
         return (
             f"\n<b>── ✦ ── ✦ ── ✦ ──</b>\n"
@@ -830,8 +809,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<i>{time_str}</i>\n"
             f"<b>  {CR}</b>\n"
         )
-    
-    else:  # default (fallback)
+    else:
         return (
             f"\n<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
             f"<b>📎 Batch:</b> {plain_batch}\n\n"
@@ -843,7 +821,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"{time_str}\n"
         )
 
-# ========================= SETTINGS SYSTEM (ORIGINAL) =========================
+# ========================= SETTINGS SYSTEM =========================
 
 def get_user_settings(user_id: int, bot_username: str = None) -> dict:
     if bot_username is None:
@@ -868,7 +846,6 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(f"Downloader Name: {settings['downloader_name'][:10]}", callback_data="set_downloader_name")])
     buttons.append([InlineKeyboardButton(f"Show Extension {status('show_extension')}", callback_data="set_show_extension_toggle")])
     
-    # Caption Style with display name
     current_style = settings.get('caption_style', 'bracket_style')
     display_name = STYLE_DISPLAY_NAMES.get(current_style, current_style)
     buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {display_name}", callback_data="set_caption_style")])
@@ -1057,7 +1034,7 @@ async def settings_callback(client: Client, query: CallbackQuery):
             await query.message.reply_text(f"❌ DB Error: {str(e)}")
         return
 
-    # ========== SUBJECT GROUP MANAGEMENT ==========
+    # Subject groups etc.
     if data == "set_subject_groups":
         groups = db.get_subject_groups(user_id, bot_username)
         text = "📂 **Subject Groups**\n\n"
@@ -1163,12 +1140,11 @@ async def settings_callback(client: Client, query: CallbackQuery):
         )
         return
 
-    # If not handled by settings, pass to ram callback
+    # If not handled, pass to ram callback
     await ram_callback_handler(client, query)
 
 # ========================= RAM.PY COMMAND HANDLERS =========================
 
-# ---------- EXTRACT COMMAND ----------
 @bot.on_message(filters.command("extract") & filters.private)
 async def extract_cmd(client: Client, message: Message):
     user = message.from_user
@@ -1202,7 +1178,6 @@ async def extract_cmd(client: Client, message: Message):
         logging.exception("Extract error")
         await message.reply_text(f"❌ Error: {str(e)} 😵‍💫")
 
-# ---------- CW COMMAND ----------
 @bot.on_message(filters.command("cw") & filters.private)
 async def cw_cmd(client: Client, message: Message):
     user = message.from_user
@@ -1239,7 +1214,6 @@ async def cw_cmd(client: Client, message: Message):
         logging.exception("CW command error")
         await message.reply_text(f"❌ Unexpected error: {str(e)} 😵‍💫")
 
-# ---------- CW BATCH ID HANDLER ----------
 @bot.on_message(filters.text & filters.private & ~filters.command)
 async def handle_cw_batch_id(client: Client, message: Message):
     user = message.from_user
@@ -1298,7 +1272,6 @@ async def handle_cw_batch_id(client: Client, message: Message):
         logging.exception("CW batch extraction error")
         await status_msg.edit_text(f"❌ Error occurred: {str(e)} 😵‍💫")
 
-# ---------- CAREERWILL COMMAND ----------
 @bot.on_message(filters.command("careerwill") & filters.private)
 async def careerwill_cmd(client: Client, message: Message):
     user = message.from_user
@@ -1353,7 +1326,6 @@ async def careerwill_cmd(client: Client, message: Message):
         logging.exception("Careerwill error")
         await msg.edit_text(f"❌ Error: {str(e)} 😵‍💫")
 
-# ---------- HTML COMMAND ----------
 @bot.on_message(filters.command("html") & filters.private)
 async def html_cmd(client: Client, message: Message):
     uid = message.from_user.id
@@ -1363,7 +1335,6 @@ async def html_cmd(client: Client, message: Message):
         ram_user_data[uid].pop('split_current_page', None)
     await message.reply_text("📂 Ab wo <b>.txt</b> file bhejein jise HTML mein convert karna hai. 🤔🎨", parse_mode="html")
 
-# ---------- SPLIT COMMAND ----------
 @bot.on_message(filters.command("split") & filters.private)
 async def split_cmd(client: Client, message: Message):
     user = message.from_user
@@ -1380,7 +1351,6 @@ async def split_cmd(client: Client, message: Message):
         parse_mode="html"
     )
 
-# ---------- HANDLE TXT FILE FOR HTML/SPLIT ----------
 @bot.on_message(filters.document & filters.private)
 async def handle_txt_file(client: Client, message: Message):
     doc = message.document
@@ -1396,7 +1366,6 @@ async def handle_txt_file(client: Client, message: Message):
 
     await handle_txt_to_html(client, message, doc)
 
-# ---------- HTML CONVERSION HANDLER ----------
 async def handle_txt_to_html(client: Client, message: Message, doc):
     msg = await message.reply_text("⏳ Processing HTML... 🎨🖌️")
     raw_name = doc.file_name.replace(".txt", "").replace(".html", "")
@@ -1633,7 +1602,6 @@ async def handle_txt_to_html(client: Client, message: Message, doc):
         if os.path.exists(tmp_in_path): os.remove(tmp_in_path)
         if os.path.exists(html_name): os.remove(html_name)
 
-# ---------- INTERACTIVE SPLIT HANDLER ----------
 async def handle_split_txt(client: Client, message: Message, doc):
     user = message.from_user
     uid = user.id
@@ -1781,13 +1749,13 @@ async def display_split_menu(client: Client, message: Message, status_msg=None, 
     else:
         await message.edit_text(header_text, reply_markup=reply_markup, parse_mode="html")
 
-# ---------- CALLBACK HANDLER (FOR ALL RAM CALLBACKS) ----------
+# ---------- RAM CALLBACK HANDLER ----------
 async def ram_callback_handler(client: Client, query: CallbackQuery):
     user = query.from_user
     uid = user.id
     data = query.data
 
-    # ---------- SPLIT CALLBACKS ----------
+    # Split callbacks
     if data.startswith("split_toggle_"):
         idx = int(data.split("_")[2])
         split_data = ram_user_data.get(uid, {}).get('split_data')
@@ -1889,7 +1857,7 @@ async def ram_callback_handler(client: Client, query: CallbackQuery):
         await query.answer()
         return
 
-    # ---------- EXTRACT / CAREERWILL CALLBACKS ----------
+    # Extract / Careerwill callbacks
     if data.startswith("sel_"):
         if not is_ram_authorized(uid):
             await query.answer("🚫 Access Denied!", show_alert=True)
@@ -2072,7 +2040,7 @@ async def ram_callback_handler(client: Client, query: CallbackQuery):
         await query.answer()
         await query.edit_message_text("❌ Action cancelled. 🙅‍♂️")
 
-# ================= ORIGINAL DRM HANDLERS (YOUR EXISTING CODE) =================
+# ================= ORIGINAL DRM HANDLERS =================
 
 @bot.on_message(filters.command("start") & (filters.private | filters.channel))
 async def start_cmd(client: Client, message: Message):
@@ -2112,7 +2080,6 @@ async def start_cmd(client: Client, message: Message):
             if is_admin:
                 commands_list += "\n<b>👑 Admin:</b>\n• /users - List all users\n"
             
-            # MODERN START CAPTION
             caption = (
                 f"<b>┌───⧫ 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 ⧫───┐</b>\n"
                 f"│\n"
@@ -2139,7 +2106,7 @@ async def start_cmd(client: Client, message: Message):
     except Exception as e:
         print(f"Error in start: {str(e)}")
 
-# Authorization filter
+# Authorization filter with FIX for ~ operator
 def auth_check_filter(_, client, message):
     try:
         if message.chat.type == "channel":
@@ -2170,7 +2137,6 @@ async def id_command(client, message):
 
 @bot.on_message(filters.command("t2h") & filters.private)
 async def call_html_handler(client, message):
-    # Placeholder – if you have html_handler, call it; else use the /html command.
     await message.reply_text("Use /html command to convert TXT to HTML.")
 
 @bot.on_message(filters.command("logs") & auth_filter)
@@ -2192,17 +2158,17 @@ async def send_logs(client, message):
 
 @bot.on_message(filters.command("t2t") & filters.private)
 async def text_to_txt(client, message):
-    # Keep your original code
+    # Your original text_to_txt code
     pass
 
 @bot.on_message(filters.command("getcookies") & filters.private)
 async def getcookies_handler(client, message):
-    # Keep your original code
+    # Your original code
     pass
 
 @bot.on_message(filters.command("cookies") & filters.private)
 async def cookies_handler(client, message):
-    # Keep your original code
+    # Your original code
     pass
 
 @bot.on_message(filters.command("stop") & filters.private)
@@ -2210,21 +2176,19 @@ async def restart_handler(client, message):
     await message.reply_text("🚦 **STOPPED**", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-# ---------- DRM COMMAND ----------
+# DRM command – please copy your original drm handler here.
 @bot.on_message(filters.command("drm") & auth_filter)
 async def drm_cmd(client: Client, message: Message):
-    # Your complete drm handler (txt_handler) from original code.
-    # I'll include a placeholder; you must copy your full drm logic here.
-    # Since it's very long, please copy your existing drm function body here.
+    # Paste your full drm handler (txt_handler) code here.
     await message.reply_text("DRM command is active. Please upload a .txt file.")
 
-# ---------- TEXT HANDLER (for DRM) ----------
+# Text handler for single links – copy your original text_handler here.
 @bot.on_message(filters.text & filters.private)
 async def text_handler(client, message):
-    # Your original text handler for single links.
+    # Your original text handler code.
     pass
 
-# ================= OTHER FUNCTIONS (NOTIFY, COMMANDS) =================
+# ================= OTHER FUNCTIONS =================
 
 def notify_owner():
     try:
