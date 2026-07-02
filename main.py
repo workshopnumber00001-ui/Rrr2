@@ -1213,8 +1213,12 @@ async def cw_cmd(client: Client, message: Message):
         logging.exception("CW command error")
         await message.reply_text(f"❌ Unexpected error: {str(e)} 😵‍💫")
 
-@bot.on_message(filters.text & filters.private & ~filters.command)
+# ---------- CW BATCH ID HANDLER (now without ~filters.command) ----------
+@bot.on_message(filters.text & filters.private)
 async def handle_cw_batch_id(client: Client, message: Message):
+    # Ignore if it's a command
+    if message.text and message.text.startswith('/'):
+        return
     user = message.from_user
     if not is_ram_authorized(user.id):
         return
@@ -2138,13 +2142,6 @@ async def id_command(client, message):
 async def call_html_handler(client, message):
     await message.reply_text("Use /html command to convert TXT to HTML.")
 
-@bot.on_message(filters.command("logs") & not_auth_filter)
-async def send_logs(client, message):
-    # Allow only if authorized (but not_auth_filter is for unauthorized, so we need auth_filter)
-    # Let's use auth_filter
-    pass
-
-# We'll keep logs with auth_filter – define auth_filter again for clarity.
 auth_filter = filters.create(auth_check_filter)
 
 @bot.on_message(filters.command("logs") & auth_filter)
@@ -2184,16 +2181,20 @@ async def restart_handler(client, message):
     await message.reply_text("🚦 **STOPPED**", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-# DRM command – Please copy your full drm handler here
+# DRM command – copy your full drm handler here
 @bot.on_message(filters.command("drm") & auth_filter)
 async def drm_cmd(client: Client, message: Message):
     # Paste your complete drm handler code here.
+    # For now, a placeholder:
     await message.reply_text("DRM command is active. Please upload a .txt file.")
 
-# Text handler for single links – copy your original text_handler here.
-@bot.on_message(filters.text & filters.private & ~filters.command)
+# Text handler for single links – now without ~filters.command, using explicit check
+@bot.on_message(filters.text & filters.private)
 async def text_handler(client, message):
-    # Your original text handler code.
+    # Ignore commands and empty messages
+    if not message.text or message.text.startswith('/'):
+        return
+    # Your original text handler code for single DRM links.
     pass
 
 # ================= OTHER FUNCTIONS =================
