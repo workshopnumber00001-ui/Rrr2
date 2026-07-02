@@ -85,7 +85,7 @@ DEFAULT_SETTINGS = {
     "resume": False,
     "downloader_name": "🥀°𓏲кяιѕнηα⋆🌿",
     "show_extension": True,
-    "caption_style": "smooth_flow",  # <-- Default set to Smooth Flow
+    "caption_style": "bracket_style",  # <-- Default Bracket Style
     "show_title": True,
     "quality": "480",
     "thumbnail": "default",
@@ -118,6 +118,26 @@ STYLE_DISPLAY_NAMES = {
     "minimal_dot": "🎯 Minimal Dot",
     "modern_border": "🏛️ Modern Border",
     "ultra_clean": "💎 Ultra Clean",
+    "bracket_style": "📦 Bracket Style",
+    "classic_box": "📦 Classic Box",
+    "double_line": "〰️ Double Line",
+    "arrow_flow": "➡️ Arrow Flow",
+    "dot_matrix": "🔘 Dot Matrix",
+    "star_border": "⭐ Star Border",
+    "curved_lines": "🌀 Curved Lines",
+    "thin_lines": "➖ Thin Lines",
+    "diamond_frame": "💎 Diamond Frame",
+    "minimalist": "➖ Minimalist",
+    "bold_box": "⬛ Bold Box",
+    "light_shadow": "🌥️ Light Shadow",
+    "hexagon": "⬡ Hexagon",
+    "split_line": "✂️ Split Line",
+    "square_frame": "▣ Square Frame",
+    "zigzag": "⚡ Zigzag",
+    "clean_tab": "📋 Clean Tab",
+    "slanted": "📐 Slanted",
+    "dotted_box": "◌ Dotted Box",
+    "ultra_modern": "🌀 Ultra Modern",
 }
 
 ALL_STYLES = [
@@ -139,6 +159,26 @@ ALL_STYLES = [
     "minimal_dot",
     "modern_border",
     "ultra_clean",
+    "bracket_style",
+    "classic_box",
+    "double_line",
+    "arrow_flow",
+    "dot_matrix",
+    "star_border",
+    "curved_lines",
+    "thin_lines",
+    "diamond_frame",
+    "minimalist",
+    "bold_box",
+    "light_shadow",
+    "hexagon",
+    "split_line",
+    "square_frame",
+    "zigzag",
+    "clean_tab",
+    "slanted",
+    "dotted_box",
+    "ultra_modern",
 ]
 
 # Initialize bot
@@ -160,12 +200,35 @@ register_clean_handler(bot)
 def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, date_str, time_str, CR):
     """Generate video caption based on selected style"""
     
-    if style == "minimal_glass":
+    # Remove HTML tags from batch_blockquote for clean display
+    plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
+    
+    # ========== BRACKET STYLE (DEFAULT) ==========
+    if style == "bracket_style":
+        return (
+            f"\n[──────────────────────]\n"
+            f"│  ✦ ID    : {str(count).zfill(3)}\n"
+            f"│\n"
+            f"│  Batch : {plain_batch}\n"
+            f"│\n"
+            f"│  Title : {name1}\n"
+            f"│\n"
+            f"│  Ext   : {CR}.{ext_actual}\n"
+            f"│\n"
+            f"│  Res   : {res}\n"
+            f"│\n"
+            f"│  ✦ Download By : {CR}\n"
+            f"[──────────────────────]\n"
+            f"\n📅 {time_str}\n"
+        )
+    
+    # ========== OTHER STYLES (Keep all previous styles) ==========
+    elif style == "minimal_glass":
         return (
             f"\n<b>┌───⧫ 𝐕𝐈𝐃𝐄𝐎 𝐈𝐍𝐅𝐎 ⧫───┐</b>\n"
             f"│\n"
             f"│  <b>📌 Index</b> : {str(count).zfill(3)}\n"
-            f"│  <b>📚 Batch</b> : {batch_blockquote}\n"
+            f"│  <b>📚 Batch</b> : {plain_batch}\n"
             f"│  <b>📖 Title</b> : {name1}\n"
             f"│  <b>📤 Ext</b> : {CR}.{ext_actual}\n"
             f"│  <b>📐 Res</b> : {res}\n"
@@ -181,7 +244,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
         return (
             f"\n<b>◤━━━━━━━━━⧫ 𝐕𝐈𝐃𝐄𝐎 ⧫━━━━━━━━━◥</b>\n\n"
             f"  <b>🧭 ID</b> : {str(count).zfill(3)}\n"
-            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📦 Batch</b> : {plain_batch}\n"
             f"  <b>📄 Title</b> : {name1}\n"
             f"  <b>⚡ Ext</b> : {CR}.{ext_actual}\n"
             f"  <b>📊 Res</b> : {res}\n"
@@ -197,7 +260,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>┣━━━━━━━━━━━━━━━━━━━━━━┫</b>\n"
             f"<b>┃</b>\n"
             f"<b>┃  🏷️ ID</b>  : {str(count).zfill(3)}\n"
-            f"<b>┃  📁 Batch</b> : {batch_blockquote}\n"
+            f"<b>┃  📁 Batch</b> : {plain_batch}\n"
             f"<b>┃  📌 Title</b> : {name1}\n"
             f"<b>┃  💾 Ext</b>  : {CR}.{ext_actual}\n"
             f"<b>┃  📐 Res</b>  : {res}\n"
@@ -216,7 +279,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>╠═══════════════════════╣</b>\n"
             f"<b>║</b>\n"
             f"<b>║  ◆ ID</b>    : {str(count).zfill(3)}\n"
-            f"<b>║  ◆ Batch</b> : {batch_blockquote}\n"
+            f"<b>║  ◆ Batch</b> : {plain_batch}\n"
             f"<b>║  ◆ Title</b> : {name1}\n"
             f"<b>║  ◆ Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>║  ◆ Res</b>   : {res}\n"
@@ -234,7 +297,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>  📌 VIDEO DETAILS</b>\n"
             f"<b>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</b>\n\n"
             f"  <b>🆔 Index</b> : {str(count).zfill(3)}\n"
-            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📦 Batch</b> : {plain_batch}\n"
             f"  <b>📄 Title</b> : {name1}\n"
             f"  <b>📎 Ext</b>   : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>   : {res}\n"
@@ -250,7 +313,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"\n<b>┌─[ VIDEO ]───────────────────┐</b>\n"
             f"<b>│</b>\n"
             f"<b>│  ╭─▶ ID</b>    : {str(count).zfill(3)}\n"
-            f"<b>│  ├─▶ Batch</b> : {batch_blockquote}\n"
+            f"<b>│  ├─▶ Batch</b> : {plain_batch}\n"
             f"<b>│  ├─▶ Title</b> : {name1}\n"
             f"<b>│  ├─▶ Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>│  ├─▶ Res</b>   : {res}\n"
@@ -269,7 +332,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>╠══════════════════════════════╣</b>\n"
             f"<b>║</b>\n"
             f"<b>║  ✦ Index</b>   : {str(count).zfill(3)}\n"
-            f"<b>║  ✦ Batch</b>   : {batch_blockquote}\n"
+            f"<b>║  ✦ Batch</b>   : {plain_batch}\n"
             f"<b>║  ✦ Title</b>   : {name1}\n"
             f"<b>║  ✦ Format</b>  : {CR}.{ext_actual}\n"
             f"<b>║  ✦ Quality</b> : {res}\n"
@@ -288,7 +351,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>▣  🔥 VIDEO INFO</b>\n"
             f"<b>◈━━━━━━━━━━━━━━━━━━━━━━━━━◈</b>\n\n"
             f"  <b>⚡ ID</b>   : {str(count).zfill(3)}\n"
-            f"  <b>📦 Batch</b> : {batch_blockquote}\n"
+            f"  <b>📦 Batch</b> : {plain_batch}\n"
             f"  <b>📌 Title</b> : {name1}\n"
             f"  <b>🎯 Ext</b>  : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>  : {res}\n"
@@ -304,7 +367,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"\n<b>✨✨✨✨✨✨✨✨✨✨✨✨✨</b>\n\n"
             f"  <b>🎬 VIDEO</b>\n\n"
             f"  <b>📌</b> {str(count).zfill(3)}\n"
-            f"  <b>📚</b> {batch_blockquote}\n"
+            f"  <b>📚</b> {plain_batch}\n"
             f"  <b>📖</b> {name1}\n"
             f"  <b>💾</b> {CR}.{ext_actual}\n"
             f"  <b>📐</b> {res}\n"
@@ -326,7 +389,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>│  ╚═╝  ╚══╝╚═╝      ╚═════╝</b>\n"
             f"<b>├─────────────────────────┤</b>\n"
             f"<b>│  ID</b>    : {str(count).zfill(3)}\n"
-            f"<b>│  Batch</b> : {batch_blockquote}\n"
+            f"<b>│  Batch</b> : {plain_batch}\n"
             f"<b>│  Title</b> : {name1}\n"
             f"<b>│  Ext</b>   : {CR}.{ext_actual}\n"
             f"<b>│  Res</b>   : {res}\n"
@@ -343,7 +406,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>    🌟 VIDEO DETAILS</b>\n"
             f"<b>✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦</b>\n\n"
             f"  <b>🪐 Index</b> : {str(count).zfill(3)}\n"
-            f"  <b>🌌 Batch</b> : {batch_blockquote}\n"
+            f"  <b>🌌 Batch</b> : {plain_batch}\n"
             f"  <b>📖 Title</b> : {name1}\n"
             f"  <b>🔗 Ext</b>  : {CR}.{ext_actual}\n"
             f"  <b>📐 Res</b>  : {res}\n"
@@ -360,7 +423,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"<b>  📌 VIDEO</b>\n"
             f"<b>· · · · · · · · · · · · · · ·</b>\n\n"
             f"  <b>• ID</b>    : {str(count).zfill(3)}\n"
-            f"  <b>• Batch</b> : {batch_blockquote}\n"
+            f"  <b>• Batch</b> : {plain_batch}\n"
             f"  <b>• Title</b> : {name1}\n"
             f"  <b>• Ext</b>   : {CR}.{ext_actual}\n"
             f"  <b>• Res</b>   : {res}\n"
@@ -371,100 +434,314 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             f"\n<i>{time_str}</i>\n"
         )
     
-    # ========== NEW MODERN STYLES ==========
+    # ========== NEW 20 STYLES ==========
     
-    elif style == "clean_glass":
+    elif style == "classic_box":
         return (
-            f"\n<b>╭─────────────────────╮</b>\n"
-            f"<b>│  ✦ VIDEO DETAILS</b>\n"
-            f"<b>╰─────────────────────╯</b>\n\n"
-            f"  <b>ID</b>    {str(count).zfill(3)}\n"
-            f"  <b>Batch</b> {batch_blockquote}\n"
-            f"  <b>Title</b> {name1}\n"
-            f"  <b>Ext</b>   {CR}.{ext_actual}\n"
-            f"  <b>Res</b>   {res}\n"
-            f"  <b>Date</b>  {date_str}\n\n"
-            f"<b>─────── ✦ ───────</b>\n"
-            f"<i>{time_str}</i>\n"
-            f"<b>  {CR}</b>\n"
+            f"\n┌──────────────────────┐\n"
+            f"│  📹 VIDEO DETAILS\n"
+            f"├──────────────────────┤\n"
+            f"│  ID: {str(count).zfill(3)}\n"
+            f"│  Batch: {plain_batch}\n"
+            f"│  Title: {name1}\n"
+            f"│  Ext: {CR}.{ext_actual}\n"
+            f"│  Res: {res}\n"
+            f"│  Date: {date_str}\n"
+            f"├──────────────────────┤\n"
+            f"│  Uploaded By: {CR}\n"
+            f"└──────────────────────┘\n"
+            f"{time_str}\n"
         )
     
-    elif style == "smooth_flow":
-        # Remove HTML tags from batch_blockquote for clean display
-        plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
+    elif style == "double_line":
         return (
-            f"\n<b>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</b>\n"
-            f"<b>    ◈ INDEX  {str(count).zfill(3)}</b>\n"
-            f"<b>▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔</b>\n\n"
-            f"  <b>◈ Batch</b> {plain_batch}\n"
-            f"\n"
-            f"  <b>◈ Title</b> {name1}\n"
-            f"\n"
-            f"  <b>◈ Ext</b>   {CR}.{ext_actual}\n"
-            f"\n"
-            f"  <b>◈ Res</b>   {res}\n"
-            f"\n"
-            f"  <b>◆ Download By :</b> {CR}\n"
-            f"\n"
-            f"<b>▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁</b>\n"
-            f"<i>{time_str}</i>\n"
-        )
-    
-    elif style == "minimal_dot":
-        return (
-            f"\n<b>• • • • • • • • • • • • • •</b>\n"
-            f"<b>  ▫ VIDEO</b>\n"
-            f"<b>• • • • • • • • • • • • • •</b>\n\n"
-            f"  <b>◉</b> ID    {str(count).zfill(3)}\n"
-            f"  <b>◉</b> Batch {batch_blockquote}\n"
-            f"  <b>◉</b> Title {name1}\n"
-            f"  <b>◉</b> Ext   {CR}.{ext_actual}\n"
-            f"  <b>◉</b> Res   {res}\n"
-            f"  <b>◉</b> Date  {date_str}\n\n"
-            f"<b>• • • • • • • • • • • • • •</b>\n"
-            f"<i>{time_str}</i>\n"
-            f"<b>  {CR}</b>\n"
-        )
-    
-    elif style == "modern_border":
-        return (
-            f"\n<b>┌──────────────────────┐</b>\n"
-            f"<b>│  ★ VIDEO DETAILS</b>\n"
-            f"<b>├──────────────────────┤</b>\n"
-            f"<b>│</b>\n"
-            f"<b>│  ID</b>    {str(count).zfill(3)}\n"
-            f"<b>│  Batch</b> {batch_blockquote}\n"
-            f"<b>│  Title</b> {name1}\n"
-            f"<b>│  Ext</b>   {CR}.{ext_actual}\n"
-            f"<b>│  Res</b>   {res}\n"
-            f"<b>│  Date</b>  {date_str}\n"
-            f"<b>│</b>\n"
-            f"<b>├──────────────────────┤</b>\n"
-            f"<b>│  {CR}</b>\n"
-            f"<b>└──────────────────────┘</b>\n"
-            f"\n<i>{time_str}</i>\n"
-        )
-    
-    elif style == "ultra_clean":
-        return (
-            f"\n<b>── ✦ ── ✦ ── ✦ ──</b>\n"
-            f"<b>  VIDEO</b>\n"
-            f"<b>── ✦ ── ✦ ── ✦ ──</b>\n\n"
+            f"\n════════════════════════\n"
+            f"  ◆ VIDEO INFO\n"
+            f"════════════════════════\n"
             f"  ID    : {str(count).zfill(3)}\n"
-            f"  Batch : {batch_blockquote}\n"
+            f"  Batch : {plain_batch}\n"
             f"  Title : {name1}\n"
             f"  Ext   : {CR}.{ext_actual}\n"
             f"  Res   : {res}\n"
-            f"  Date  : {date_str}\n\n"
-            f"<b>── ✦ ── ✦ ── ✦ ──</b>\n"
-            f"<i>{time_str}</i>\n"
-            f"<b>  {CR}</b>\n"
+            f"  Date  : {date_str}\n"
+            f"════════════════════════\n"
+            f"  ◆ {CR}\n"
+            f"════════════════════════\n"
+            f"{time_str}\n"
         )
     
+    elif style == "arrow_flow":
+        return (
+            f"\n▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶\n"
+            f"  ★ VIDEO\n"
+            f"◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀◀\n"
+            f"  ▶ {CR}\n"
+            f"▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "dot_matrix":
+        return (
+            f"\n· · · · · · · · · · · · · · ·\n"
+            f"  ★ VIDEO\n"
+            f"· · · · · · · · · · · · · · ·\n"
+            f"  · ID    : {str(count).zfill(3)}\n"
+            f"  · Batch : {plain_batch}\n"
+            f"  · Title : {name1}\n"
+            f"  · Ext   : {CR}.{ext_actual}\n"
+            f"  · Res   : {res}\n"
+            f"  · Date  : {date_str}\n"
+            f"· · · · · · · · · · · · · · ·\n"
+            f"  · {CR}\n"
+            f"· · · · · · · · · · · · · · ·\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "star_border":
+        return (
+            f"\n✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧\n"
+            f"  ✦ VIDEO\n"
+            f"✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧\n"
+            f"  ✦ {CR}\n"
+            f"✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "curved_lines":
+        return (
+            f"\n╭──────────────────────╮\n"
+            f"│  ◈ VIDEO\n"
+            f"├──────────────────────┤\n"
+            f"│  ID    : {str(count).zfill(3)}\n"
+            f"│  Batch : {plain_batch}\n"
+            f"│  Title : {name1}\n"
+            f"│  Ext   : {CR}.{ext_actual}\n"
+            f"│  Res   : {res}\n"
+            f"│  Date  : {date_str}\n"
+            f"├──────────────────────┤\n"
+            f"│  ◈ {CR}\n"
+            f"╰──────────────────────╯\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "thin_lines":
+        return (
+            f"\n┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄\n"
+            f"  ► VIDEO\n"
+            f"┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄\n"
+            f"  ► {CR}\n"
+            f"┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "diamond_frame":
+        return (
+            f"\n◇━━━━━━━━━━━━━━━━━━━━━━◇\n"
+            f"  ◆ VIDEO\n"
+            f"◇━━━━━━━━━━━━━━━━━━━━━━◇\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"◇━━━━━━━━━━━━━━━━━━━━━━◇\n"
+            f"  ◆ {CR}\n"
+            f"◇━━━━━━━━━━━━━━━━━━━━━━◇\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "minimalist":
+        return (
+            f"\n─────────── VIDEO ───────────\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"─────────── {CR} ──────────\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "bold_box":
+        return (
+            f"\n▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n"
+            f"▌  ★ VIDEO\n"
+            f"▌  ID    : {str(count).zfill(3)}\n"
+            f"▌  Batch : {plain_batch}\n"
+            f"▌  Title : {name1}\n"
+            f"▌  Ext   : {CR}.{ext_actual}\n"
+            f"▌  Res   : {res}\n"
+            f"▌  Date  : {date_str}\n"
+            f"▌  ★ {CR}\n"
+            f"▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "light_shadow":
+        return (
+            f"\n╭──────────────────────╮\n"
+            f"│  ✦ VIDEO\n"
+            f"│  ID    : {str(count).zfill(3)}\n"
+            f"│  Batch : {plain_batch}\n"
+            f"│  Title : {name1}\n"
+            f"│  Ext   : {CR}.{ext_actual}\n"
+            f"│  Res   : {res}\n"
+            f"│  Date  : {date_str}\n"
+            f"│  ✦ {CR}\n"
+            f"╰──────────────────────╯\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "hexagon":
+        return (
+            f"\n⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡\n"
+            f"  ✦ VIDEO\n"
+            f"⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡\n"
+            f"  ✦ {CR}\n"
+            f"⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡⟡\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "split_line":
+        return (
+            f"\n─────── ✦ VIDEO ✦ ───────\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"─────── ✦ {CR} ✦ ──────\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "square_frame":
+        return (
+            f"\n┌──────────────────────┐\n"
+            f"│  ▣ VIDEO\n"
+            f"│  ID    : {str(count).zfill(3)}\n"
+            f"│  Batch : {plain_batch}\n"
+            f"│  Title : {name1}\n"
+            f"│  Ext   : {CR}.{ext_actual}\n"
+            f"│  Res   : {res}\n"
+            f"│  Date  : {date_str}\n"
+            f"│  ▣ {CR}\n"
+            f"└──────────────────────┘\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "zigzag":
+        return (
+            f"\n╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲\n"
+            f"  ✦ VIDEO\n"
+            f"╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲\n"
+            f"  ✦ {CR}\n"
+            f"╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱╲╱\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "clean_tab":
+        return (
+            f"\n▍ VIDEO\n"
+            f"▍ ID    : {str(count).zfill(3)}\n"
+            f"▍ Batch : {plain_batch}\n"
+            f"▍ Title : {name1}\n"
+            f"▍ Ext   : {CR}.{ext_actual}\n"
+            f"▍ Res   : {res}\n"
+            f"▍ Date  : {date_str}\n"
+            f"▍ {CR}\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "slanted":
+        return (
+            f"\n╔══════════════════════╗\n"
+            f"║  ✧ VIDEO\n"
+            f"║  ID    : {str(count).zfill(3)}\n"
+            f"║  Batch : {plain_batch}\n"
+            f"║  Title : {name1}\n"
+            f"║  Ext   : {CR}.{ext_actual}\n"
+            f"║  Res   : {res}\n"
+            f"║  Date  : {date_str}\n"
+            f"║  ✧ {CR}\n"
+            f"╚══════════════════════╝\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "dotted_box":
+        return (
+            f"\n┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐\n"
+            f"│  VIDEO\n"
+            f"└─┘ └─┘ └─┘ └─┘ └─┘ └─┘\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐\n"
+            f"│  {CR}\n"
+            f"└─┘ └─┘ └─┘ └─┘ └─┘ └─┘\n"
+            f"{time_str}\n"
+        )
+    
+    elif style == "ultra_modern":
+        return (
+            f"\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
+            f"  ✦ VIDEO\n"
+            f"  ID    : {str(count).zfill(3)}\n"
+            f"  Batch : {plain_batch}\n"
+            f"  Title : {name1}\n"
+            f"  Ext   : {CR}.{ext_actual}\n"
+            f"  Res   : {res}\n"
+            f"  Date  : {date_str}\n"
+            f"  ✦ {CR}\n"
+            f"▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
+            f"{time_str}\n"
+        )
+    
+    # ========== DEFAULT ==========
     else:  # default
         return (
             f"\n<b>🧭 Index ID:</b> {str(count).zfill(3)}\n\n"
-            f"<b>📎 Batch:</b> {batch_blockquote}\n\n"
+            f"<b>📎 Batch:</b> {plain_batch}\n\n"
             f"<b>📥 Title:</b> {name1}\n\n"
             f"[{date_str}]\n\n"
             f"<b>📤 Extension:</b> {CR}.{ext_actual}\n"
@@ -499,7 +776,7 @@ def settings_menu_markup(user_id: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(f"Show Extension {status('show_extension')}", callback_data="set_show_extension_toggle")])
     
     # Caption Style with display name
-    current_style = settings.get('caption_style', 'smooth_flow')
+    current_style = settings.get('caption_style', 'bracket_style')
     display_name = STYLE_DISPLAY_NAMES.get(current_style, current_style)
     buttons.append([InlineKeyboardButton(f"🎨 Caption Style: {display_name}", callback_data="set_caption_style")])
     
@@ -1242,7 +1519,7 @@ async def txt_handler(bot: Client, m: Message):
 
             # ========== FRESH FETCH USER SETTINGS FOR EACH VIDEO ==========
             user_settings = get_user_settings(m.from_user.id, bot_username)
-            caption_style = user_settings.get("caption_style", "smooth_flow")
+            caption_style = user_settings.get("caption_style", "bracket_style")
             
             if user_settings.get("auto_grouping", False):
                 group_chat_id = db.get_group_for_file(m.from_user.id, name1, bot_username)
@@ -1250,7 +1527,7 @@ async def txt_handler(bot: Client, m: Message):
                     channel_id = group_chat_id
             # =============================================================
 
-            # URL transformations
+            # URL transformations (same as original code)
             if "visionias" in url:
                 async with aiohttp.ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
@@ -1679,7 +1956,7 @@ async def text_handler(bot: Client, m: Message):
         
         # Get user's caption style
         user_settings = get_user_settings(m.from_user.id, bot_username)
-        caption_style = user_settings.get("caption_style", "smooth_flow")
+        caption_style = user_settings.get("caption_style", "bracket_style")
 
         # Direct download using helper
         res_file = await helper.download_video(url, cmd, name)
