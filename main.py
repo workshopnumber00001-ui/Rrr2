@@ -21,6 +21,29 @@ from subprocess import getstatusoutput
 
 # 📦 Third-party Libraries
 import aiohttp
+# 🔧 Standard Library
+import os
+import re
+import sys
+import time
+import json
+import random
+import string
+import shutil
+import zipfile
+import urllib
+import subprocess
+import datetime
+import pytz
+import io
+import tempfile
+import asyncio
+import html as html_lib
+from base64 import b64encode, b64decode
+from subprocess import getstatusoutput
+
+# 📦 Third-party Libraries
+import aiohttp
 import aiofiles
 import requests
 import ffmpeg
@@ -42,9 +65,9 @@ from pyrogram.types import (
     Message,
     CallbackQuery,
     InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    ParseMode  # ✅ Correct import
+    InlineKeyboardButton
 )
+from pyrogram.enums import ParseMode  # <-- FIXED: Import from enums
 from pyrogram.errors import (
     FloodWait,
     BadRequest,
@@ -69,6 +92,8 @@ from utils import progress_bar
 from vars import *
 from pyromod import listen
 from db import db
+
+# ... the rest of your code remains exactly the same ...
 
 # ================= RAM.PY CONFIGURATION =================
 LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", "-1003692273087"))
