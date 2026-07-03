@@ -165,24 +165,30 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
     # Remove HTML tags from batch_blockquote for clean display
     plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
     
-    # ========== BRACKET STYLE (DEFAULT) ==========
+    # ========== BRACKET STYLE (NEW) ==========
     if style == "bracket_style":
-        return (
-            f"\n[──────────────────────]\n"
-            f"│  ✦ ID    : {str(count).zfill(3)}\n"
-            f"│\n"
-            f"│  Batch : {plain_batch}\n"
-            f"│\n"
-            f"│  Title : {name1}\n"
-            f"│\n"
-            f"│  Ext   : {CR}.{ext_actual}\n"
-            f"│\n"
-            f"│  Res   : {res}\n"
-            f"│\n"
-            f"│  ✦ Download By : {CR}\n"
-            f"[──────────────────────]\n"
-            f"\n📅 {time_str}\n"
+        # Determine file type
+        if ext_actual.lower() == "pdf":
+            file_type = "📄 FILE"
+            title_suffix = " PDF"
+        else:
+            file_type = "🎥 VIDEO"
+            title_suffix = ""
+        
+        # Build caption
+        caption = (
+            f"╭━━━━━━━━━━━╮\n"
+            f"{file_type} ID: {str(count).zfill(3)}\n"
+            f"╰━━━━━━━━━━━╯\n"
+            f"📄 Title: {name1}{title_suffix}\n"
         )
+        if ext_actual.lower() != "pdf":
+            caption += f"📏 Resolution: {res}\n"
+        caption += f"💾 Format: {CR}.{ext_actual}\n\n"
+        caption += f"🔖 Batch: {plain_batch}\n\n"
+        caption += f"📥 Downloaded by: {CR}\n\n"
+        caption += f"📅 {date_str} 🕐 {time_str}\n"
+        return caption
     
     # ========== OTHER STYLES ==========
     elif style == "minimal_glass":
