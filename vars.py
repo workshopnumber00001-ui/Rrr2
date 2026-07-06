@@ -4,9 +4,9 @@ from os import environ
 # API Configuration
 API_ID = int(os.environ.get("API_ID", "34422904"))
 API_HASH = os.environ.get("API_HASH", "7e0002469784f47fc08a6b3d93d7ebed")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8989917967:AAHUhogQemVYvREpl5uOwWRTrdSKH7pNeeA")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8684917529:AAHTGq7cJn3pOz3IRalmDKbEnW8oMTcEoX4")
 
-CREDIT = os.environ.get("CREDIT", "✩°𓏲 кяιѕнηα ⋆🌿")
+CREDIT = os.environ.get("CREDIT", "ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ")
 # MongoDB Configuration
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "DevThanos")
 DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://adarshppandey937:uIoPcln9vXQBF0vP@cluster0.o9mn6hb.mongodb.net/?")  # Add your own atlas db
