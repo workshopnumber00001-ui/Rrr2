@@ -165,7 +165,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
     # Remove HTML tags from batch_blockquote for clean display
     plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
     
-    # ========== BRACKET STYLE (NEW) ==========
+    # ========== BRACKET STYLE (UPDATED) ==========
     if style == "bracket_style":
         # Determine file type
         if ext_actual.lower() == "pdf":
@@ -175,7 +175,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             file_type = "🎥 VIDEO"
             title_suffix = ""
         
-        # Build caption
+        # Build caption – entire lines are now blockquoted
         caption = (
             f"╭━━━━━━━━━━━╮\n"
             f"{file_type} ID: {str(count).zfill(3)}\n"
@@ -185,9 +185,11 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
         if ext_actual.lower() != "pdf":
             caption += f"📏 Resolution: {res}\n"
         caption += f"💾 Format: {CR}.{ext_actual}\n\n"
-        caption += f"🔖 Batch: {plain_batch}\n\n"
+        
+        # 🔥 NEW – entire line wrapped in blockquote
+        caption += f"<blockquote>🔖 Batch: {plain_batch}</blockquote>\n\n"
         caption += f"📥 Downloaded by: {CR}\n\n"
-        caption += f"📅 {time_str}\n"
+        caption += f"<blockquote>📅 {time_str}</blockquote>\n"
         return caption
     
     # ========== OTHER STYLES ==========
