@@ -85,7 +85,7 @@ DEFAULT_SETTINGS = {
     "resume": False,
     "downloader_name": "🥀°𓏲кяιѕнηα⋆🌿",
     "show_extension": True,
-    "caption_style": "bracket_style",
+    "caption_style": "bracket_style",  # ✅ DEFAULT IS NOW BRACKET_STYLE
     "show_title": True,
     "quality": "480",
     "thumbnail": "default",
@@ -165,7 +165,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
     # Remove HTML tags from batch_blockquote for clean display
     plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
     
-    # ========== BRACKET STYLE (UPDATED WITH FULL LINE BLOCKQUOTE) ==========
+    # ========== BRACKET STYLE (FIXED WITH FULL LINE BLOCKQUOTE) ==========
     if style == "bracket_style":
         # Determine file type
         if ext_actual.lower() == "pdf":
@@ -186,13 +186,16 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
             caption += f"📏 Resolution: {res}\n"
         caption += f"💾 Format: {CR}.{ext_actual}\n\n"
         
-        # 🔥 पूरी लाइन Blockquote में
+        # 🔥 यहाँ पूरी लाइन Blockquote में जा रही है
         caption += f"<blockquote>🔖 Batch: {plain_batch}</blockquote>\n\n"
         caption += f"📥 Downloaded by: {CR}\n\n"
         caption += f"<blockquote>📅 {time_str}</blockquote>\n"
+        
+        # 🧪 डीबग के लिए Logs में प्रिंट
+        print(f"✅ DEBUG CAPTION:\n{caption}")
         return caption
     
-    # ========== OTHER STYLES ==========
+    # ========== OTHER STYLES (unchanged) ==========
     elif style == "minimal_glass":
         return (
             f"\n<b>┌───⧫ 𝐕𝐈𝐃𝐄𝐎 𝐈𝐍𝐅𝐎 ⧫───┐</b>\n"
@@ -1300,8 +1303,8 @@ async def txt_handler(bot: Client, m: Message):
                     channel_id = group_chat_id
             # ===================================
 
-            # ========== FRESH FETCH CAPTION STYLE FOR EACH VIDEO ==========
-            caption_style = user_settings.get("caption_style", "bracket_style")
+            # 🔥🔥🔥 FORCE BRACKET STYLE – DATABASE SETTINGS KO IGNORE KAREN 🔥🔥🔥
+            caption_style = "bracket_style"  # 🚀 यहाँ फोर्स किया
             # =============================================================
 
             # URL transformations
@@ -1732,9 +1735,8 @@ async def text_handler(bot: Client, m: Message):
         time_str = current_ist.strftime('%A, %d %B %Y • %I:%M %p')
         single_batch = '<blockquote>Single Video</blockquote>'
         
-        # Get user's caption style
-        user_settings = get_user_settings(m.from_user.id, bot_username)
-        caption_style = user_settings.get("caption_style", "bracket_style")
+        # 🔥 FORCE BRACKET STYLE HERE TOO
+        caption_style = "bracket_style"
 
         # Direct download using helper
         res_file = await helper.download_video(url, cmd, name)
