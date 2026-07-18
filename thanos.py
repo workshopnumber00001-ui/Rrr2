@@ -15,6 +15,7 @@ from math import ceil
 from utils import progress_bar
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.enums import ParseMode  # ✅ यह नया import
 from io import BytesIO
 from pathlib import Path  
 from Crypto.Cipher import AES
@@ -465,6 +466,7 @@ async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog, cha
                     chat_id=channel_id,
                     video=filename,
                     caption=cc,
+                    parse_mode=ParseMode.HTML,  # ✅ ADDED
                     supports_streaming=True,
                     height=720,
                     width=1280,
@@ -478,6 +480,7 @@ async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog, cha
                     chat_id=channel_id,
                     document=filename,
                     caption=cc,
+                    parse_mode=ParseMode.HTML,  # ✅ ADDED
                     progress=progress_bar,
                     progress_args=(reply, start_time)
                 )
@@ -511,6 +514,7 @@ async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog, cha
                             chat_id=channel_id,
                             video=part,
                             caption=part_caption,
+                            parse_mode=ParseMode.HTML,  # ✅ ADDED
                             file_name=part_filename,
                             supports_streaming=True,
                             height=720,
@@ -527,6 +531,7 @@ async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog, cha
                             chat_id=channel_id,
                             document=part,
                             caption=part_caption,
+                            parse_mode=ParseMode.HTML,  # ✅ ADDED
                             file_name=part_filename,
                             progress=progress_bar,
                             progress_args=(upload_msg, time.time())
