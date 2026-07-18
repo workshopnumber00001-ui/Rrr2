@@ -187,7 +187,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
         caption += f"💾 Format: {CR}.{ext_actual}\n\n"
         caption += f"🔖 Batch: {plain_batch}\n\n"
         caption += f"📥 Downloaded by: {CR}\n\n"
-        caption += f"📅 {time_str}</code></pre>\n"
+        caption += f"📅 {time_str}\n"
         return caption
     
     # ========== OTHER STYLES ==========
