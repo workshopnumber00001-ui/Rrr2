@@ -166,31 +166,32 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
     plain_batch = re.sub(r'<[^>]+>', '', batch_blockquote).strip()
     
     # ========== BRACKET STYLE (UPDATED) ==========
-    if style == "bracket_style":
-        # Determine file type
-        if ext_actual.lower() == "pdf":
-            file_type = "📄 FILE"
-            title_suffix = " PDF"
-        else:
-            file_type = "🎥 VIDEO"
-            title_suffix = ""
-        
-        # Build caption – entire lines are now blockquoted
-        caption = (
-            f"╭━━━━━━━━━━━╮\n"
-            f"{file_type} ID: {str(count).zfill(3)}\n"
-            f"╰━━━━━━━━━━━╯\n"
-            f"📄 Title: {name1}{title_suffix}\n"
-        )
-        if ext_actual.lower() != "pdf":
-            caption += f"📏 Resolution: {res}\n"
-        caption += f"💾 Format: {CR}.{ext_actual}\n\n"
-        
-        # 🔥 NEW – entire line wrapped in blockquote
-        caption += f"<blockquote>🔖 Batch: {plain_batch}</blockquote>\n\n"
-        caption += f"📥 Downloaded by: {CR}\n\n"
-        caption += f"<blockquote>📅 {time_str}</blockquote>\n"
-        return caption
+    # ========== BRACKET STYLE (UPDATED WITH FULL LINE BLOCKQUOTE) ==========
+if style == "bracket_style":
+    # Determine file type
+    if ext_actual.lower() == "pdf":
+        file_type = "📄 FILE"
+        title_suffix = " PDF"
+    else:
+        file_type = "🎥 VIDEO"
+        title_suffix = ""
+    
+    # Build caption – entire lines are now blockquoted
+    caption = (
+        f"╭━━━━━━━━━━━╮\n"
+        f"{file_type} ID: {str(count).zfill(3)}\n"
+        f"╰━━━━━━━━━━━╯\n"
+        f"📄 Title: {name1}{title_suffix}\n"
+    )
+    if ext_actual.lower() != "pdf":
+        caption += f"📏 Resolution: {res}\n"
+    caption += f"💾 Format: {CR}.{ext_actual}\n\n"
+    
+    # 🔥 पूरी लाइन Blockquote में
+    caption += f"<blockquote>🔖 Batch: {plain_batch}</blockquote>\n\n"
+    caption += f"📥 Downloaded by: {CR}\n\n"
+    caption += f"<blockquote>📅 {time_str}</blockquote>\n"
+    return caption
     
     # ========== OTHER STYLES ==========
     elif style == "minimal_glass":
