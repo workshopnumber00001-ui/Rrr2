@@ -6,7 +6,7 @@ API_ID = int(os.environ.get("API_ID", "34422904"))
 API_HASH = os.environ.get("API_HASH", "7e0002469784f47fc08a6b3d93d7ebed")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "8684917529:AAHTGq7cJn3pOz3IRalmDKbEnW8oMTcEoX4")
 
-CREDIT = os.environ.get("CREDIT", "[ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ](https://t.me/HelyByKeshav1_bot)")  # ✅ Clickable link added
+CREDIT = os.environ.get("CREDIT", "ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ")  # ✅ Clickable link added
 
 # MongoDB Configuration
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "DevThanos")
