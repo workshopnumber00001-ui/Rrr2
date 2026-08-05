@@ -6,24 +6,26 @@ API_ID = int(os.environ.get("API_ID", "34422904"))
 API_HASH = os.environ.get("API_HASH", "7e0002469784f47fc08a6b3d93d7ebed")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "8684917529:AAHTGq7cJn3pOz3IRalmDKbEnW8oMTcEoX4")
 
-CREDIT = os.environ.get("CREDIT", "ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ")
+CREDIT = os.environ.get("CREDIT", "[ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ](https://t.me/HelyByKeshav1_bot)")  # ✅ Clickable link added
+
 # MongoDB Configuration
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "DevThanos")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://adarshppandey937:uIoPcln9vXQBF0vP@cluster0.o9mn6hb.mongodb.net/?")  # Add your own atlas db
-MONGO_URL = DATABASE_URL  # For auth system
+DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://adarshppandey937:uIoPcln9vXQBF0vP@cluster0.o9mn6hb.mongodb.net/?")
+MONGO_URL = DATABASE_URL
 
 # Owner and Admin Configuration
 OWNER_ID = int(os.environ.get("OWNER_ID", "5349573682"))
-ADMINS = [int(x) for x in os.environ.get("ADMINS", "5349573682").split()]  # Default to owner ID
+ADMINS = [int(x) for x in os.environ.get("ADMINS", "5349573682").split()]
 
 # Channel Configuration
 PREMIUM_CHANNEL = "https://t.me/backupballu"
+
 # Thumbnail Configuration
-THUMBNAILS = list(map(str, os.environ.get("THUMBNAILS", "https://files.catbox.moe/fh731v.jpg").split())) # Image Link For Default Thumbnail 
+THUMBNAILS = list(map(str, os.environ.get("THUMBNAILS", "https://files.catbox.moe/fh731v.jpg").split()))
 
 # Web Server Configuration
 WEB_SERVER = os.environ.get("WEB_SERVER", "False").lower() == "true"
-WEBHOOK = True  # Don't change this
+WEBHOOK = True
 PORT = int(os.environ.get("PORT", 8000))
 
 # Message Formats
@@ -59,6 +61,3 @@ Please contact the admin @ItsUGBot to get access.</blockquote>""",
 
 <blockquote>Use format: {format}</blockquote>"""
 }
-
-
-
