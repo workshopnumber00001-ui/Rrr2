@@ -189,7 +189,7 @@ def get_video_caption(style, count, batch_blockquote, name1, ext_actual, res, da
         # 🔥 यहाँ पूरी लाइन Blockquote में जा रही है
         caption += f"<blockquote>🔖 Batch: {plain_batch}</blockquote>\n\n"
         caption += f"📥 Downloaded by: {CR}\n\n"
-        caption += f"<blockquote>📅 {time_str}</blockquote>\n"
+        caption += f"<pre><code>📅 {time_str}</code></pre>\n"
         
         # 🧪 डीबग के लिए Logs में प्रिंट
         print(f"✅ DEBUG CAPTION:\n{caption}")
