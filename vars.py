@@ -4,7 +4,7 @@ from os import environ
 # API Configuration
 API_ID = int(os.environ.get("API_ID", "34422904"))
 API_HASH = os.environ.get("API_HASH", "7e0002469784f47fc08a6b3d93d7ebed")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8684917529:AAHTGq7cJn3pOz3IRalmDKbEnW8oMTcEoX4")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8943498016:AAFKAHWIEfz5Xj2XS5BTlHLOxjsQNPOfvbg")
 
 CREDIT = os.environ.get("CREDIT", "ƦᎪᎠᎻᎬ❀ƦᎪᎠᎻᎬ")  # ✅ Clickable link added
 
